@@ -63,6 +63,15 @@ def processRequest(req):
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
+    elif req.get("result").get("action")=="readsheet":
+        baseurl = "https://sheets.googleapis.com/v4/spreadsheets"
+        gs_query = makeGsQuery(req)
+        if gs_query is None:
+        return {}    
+        gs_url = baseurl + urlencode({'
+        result = urlopen(baseurl).read()
+        data = json.loads(result)
+        res = makeWebhookResultForGetJoke(data)
     else:
         return {}
 
