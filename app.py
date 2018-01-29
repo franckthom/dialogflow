@@ -67,12 +67,12 @@ def processRequest(req):
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
-    elif req.get("result").get("action")=="readsheet":
-        scope = ['https://spreadsheets.google.com/feeds']
-        creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
-        client = gspread.authorize(creds)
-        sheet = client.open("Copie de Legislators 2017").sheet1
-        res = sheet.col_values(2)
+    #elif req.get("result").get("action")=="readsheet":
+        #scope = ['https://spreadsheets.google.com/feeds']
+        #creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+        #client = gspread.authorize(creds)
+        #sheet = client.open("Copie de Legislators 2017").sheet1
+        #res = sheet.col_values(2)
         
 
     else:
