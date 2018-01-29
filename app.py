@@ -25,7 +25,7 @@ from urllib.error import HTTPError
 import json
 import os
 
-from sheetsu import SheetsuClient
+#from sheetsu import SheetsuClient
 #import gspread
 #from oauth2client.service_account import ServiceAccountCredentials
 
@@ -73,7 +73,6 @@ def processRequest(req):
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForSheets(data)
-
     else:
         return {}
 
