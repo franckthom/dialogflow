@@ -25,6 +25,7 @@ from urllib.error import HTTPError
 import json
 import os
 
+from sheetsu import SheetsuClient
 #import gspread
 #from oauth2client.service_account import ServiceAccountCredentials
 
@@ -67,12 +68,12 @@ def processRequest(req):
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
-    #elif req.get("result").get("action")=="readsheet":
-        #scope = ['https://spreadsheets.google.com/feeds']
-        #creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
-        #client = gspread.authorize(creds)
-        #sheet = client.open("Copie de Legislators 2017").sheet1
-        #res = sheet.col_values(2)
+    elif req.get("result").get("action")=="readsheet":
+        baseurl = "https://sheetsu.com/apis/v1.0su/8a25665b30da"
+        result = urlopen(baseurl).read()
+        data = json.loads(result)
+        res = makeWebhookResultForSheets(data)
+           return {}
         
 
     else:
@@ -94,18 +95,17 @@ def makeWebhookResultForGetJoke(data):
         "source": "apiai-weather-webhook-sample"
     }
 
-#def makeWebhookResultForSheets(data):
-    #valueString = data.get('value')
-    #joke = valueString.get('joke')
-    #speechText = joke
-    #displayText = joke
-    #return {
-        #"speech": speechText,
-        #"displayText": displayText,
+def makeWebhookResultForSheets(data):
+    nom = data.get('nom')
+    speechText = nom
+    displayText = nom
+    return {
+        "speech": speechText,
+        "displayText": displayText,
         # "data": data,
         # "contextOut": [],
-        #"source": "apiai-weather-webhook-sample"
-    #}
+        "source": "apiai-weather-webhook-sample"
+    }
 
 
 #fonction création de la query pour API météo
