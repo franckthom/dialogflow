@@ -25,6 +25,9 @@ from urllib.error import HTTPError
 import json
 import os
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -64,19 +67,17 @@ def processRequest(req):
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
-    #elif req.get("result").get("action")=="readsheet":
-       # baseurl = "https://sheets.googleapis.com/v4/spreadsheets"
-       # gs_query = makeGsQuery(req)
-        #if gs_query is None:
-        #return {}    
-       # gs_url = baseurl + urlencode({'
-       # result = urlopen(baseurl).read()
-       # data = json.loads(result)
-       # res = makeWebhookResultForGetJoke(data)
+    elif req.get("result").get("action")=="readsheet":
+        scope = ['https://spreadsheets.google.com/feeds']
+        creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+        client = gspread.authorize(creds)
+        sheet = client.open("Copie de Legislators 2017").sheet1
+        res = sheet.col_values(2)
+        
+
     else:
         return {}
 
-    
     return res
 
 #fonction pour afficher API joke
@@ -92,6 +93,19 @@ def makeWebhookResultForGetJoke(data):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
+
+#def makeWebhookResultForSheets(data):
+    #valueString = data.get('value')
+    #joke = valueString.get('joke')
+    #speechText = joke
+    #displayText = joke
+    #return {
+        #"speech": speechText,
+        #"displayText": displayText,
+        # "data": data,
+        # "contextOut": [],
+        #"source": "apiai-weather-webhook-sample"
+    #}
 
 
 #fonction création de la query pour API météo
