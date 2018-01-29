@@ -73,8 +73,6 @@ def processRequest(req):
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForSheets(data)
-           return {}
-        
 
     else:
         return {}
