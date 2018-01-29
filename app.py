@@ -48,6 +48,7 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
+#appel des API
 def processRequest(req):
     if req.get("result").get("action")=="yahooWeatherForecast":
         baseurl = "https://query.yahooapis.com/v1/public/yql?"
@@ -78,6 +79,7 @@ def processRequest(req):
     
     return res
 
+#fonction pour afficher API joke
 def makeWebhookResultForGetJoke(data):
     valueString = data.get('value')
     joke = valueString.get('joke')
@@ -92,7 +94,7 @@ def makeWebhookResultForGetJoke(data):
     }
 
 
-
+#fonction création de la query pour API météo
 def makeYqlQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
@@ -102,7 +104,7 @@ def makeYqlQuery(req):
 
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "') and u='c'"
 
-
+#fonction qui trie les données à afficher pour API météo
 def makeWebhookResult(data):
     query = data.get('query')
     if query is None:
