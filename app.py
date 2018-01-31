@@ -71,9 +71,9 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet":
         #baseurl = "https://sheetsu.com/apis/v1.0su/8a25665b30da"
         #result = urlopen(baseurl).read()
+        Gs_query = makeGsQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(nom="AZ consultant")
-        #data = json.loads(result)
+        data = client.search(nom=Gs_query)
         res = makeWebhookResultForSheets(data)
     else:
         return {}
@@ -93,6 +93,15 @@ def makeWebhookResultForGetJoke(data):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
+
+def makeGsQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    exp = parameters.get("Exposant")
+    if exp is None:
+        return None
+    return exp
+
 
 def makeWebhookResultForSheets(data):
     nom = data[0]['emplacement']
