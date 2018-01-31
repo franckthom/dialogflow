@@ -72,7 +72,7 @@ def processRequest(req):
         #baseurl = "https://sheetsu.com/apis/v1.0su/8a25665b30da"
         #result = urlopen(baseurl).read()
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.create_one(nom="ER consultant", emplacement="Z23")
+        data = client.read(limite=3)
         #data = json.loads(result)
         res = makeWebhookResultForSheets(data)
     else:
