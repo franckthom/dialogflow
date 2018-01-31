@@ -96,8 +96,8 @@ def makeWebhookResultForGetJoke(data):
 
 def makeWebhookResultForSheets(data):
     nom = data[0]['nom']
-    speechText = data
-    displayText = data
+    speechText = nom
+    displayText = nom
     return {
         "speech": speechText,
         "displayText": displayText,
