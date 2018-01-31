@@ -69,8 +69,8 @@ def processRequest(req):
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
     elif req.get("result").get("action")=="readsheet":
-        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        result = client.read(sheet="ROOMn", limit=10)
+        baseurl = "https://sheetsu.com/apis/v1.0su/8a25665b30da"
+        result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForSheets(data)
     else:
