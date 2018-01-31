@@ -25,7 +25,7 @@ from urllib.error import HTTPError
 import json
 import os
 
-#from sheetsu import SheetsuClient
+from sheetsu import SheetsuClient
 #import gspread
 #from oauth2client.service_account import ServiceAccountCredentials
 
@@ -69,8 +69,10 @@ def processRequest(req):
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
     elif req.get("result").get("action")=="readsheet":
-        baseurl = "https://sheetsu.com/apis/v1.0su/8a25665b30da"
-        result = urlopen(baseurl).read()
+        #baseurl = "https://sheetsu.com/apis/v1.0su/8a25665b30da"
+        #result = urlopen(baseurl).read()
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
+        result = client.read(sheet="ROOMn", limit=3)
         data = json.loads(result)
         res = makeWebhookResultForSheets(data)
     else:
@@ -93,8 +95,8 @@ def makeWebhookResultForGetJoke(data):
     }
 
 def makeWebhookResultForSheets(data):
-    speechText = data[3]['nom']
-    displayText = data[3]['nom']
+    speechText = data
+    displayText = data
     return {
         "speech": speechText,
         "displayText": displayText,
