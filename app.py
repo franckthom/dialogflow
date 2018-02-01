@@ -25,6 +25,8 @@ from urllib.error import HTTPError
 import json
 import os
 
+import config
+
 from sheetsu import SheetsuClient
 #import gspread
 #from oauth2client.service_account import ServiceAccountCredentials
