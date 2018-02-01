@@ -72,15 +72,15 @@ def processRequest(req):
         res = makeWebhookResultForGetJoke(data)
     #sheet exposant
     elif req.get("result").get("action")=="readsheet-exp":
-        Gs_query = makeGsExpQuery(req)
+        GsExp_query = makeGsExpQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(nom=Gs_query)
+        data = client.search(nom=GsExp_query)
         res = makeWebhookResultForSheetsExp(data)
      #sheet bus
     elif req.get("result").get("action")=="readsheet-bus":
-        Gs_query = makeGsBusQuery(req)
+        GsBus_query = makeGsBusQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/0042cc74deeb")
-        data = client.search(nom=Gs_query)
+        data = client.search(nom=GsBus_query)
         res = makeWebhookResultForSheetsBus(data)
     else:
         return {}
@@ -138,7 +138,7 @@ def makeWebhookResultForSheetsBus(data):
     nom = data[0]['nom']
     hoa = data[0]['horaire aller']
     hor = data[0]['horaire retour']
-    speech = "le " + nom + " a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
+    speech = "Le " + nom + " a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
     speechText = speech
     displayText = speech
     return {
