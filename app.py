@@ -126,15 +126,13 @@ def makeWebhookResultForSheetsExp(data):
 
 
 def makeWebhookResultForSheetsBus(data):
-    #hoa = data[0]['horaire aller']
-    #hor = data[0]['horaire retour']
-    #speech = "Le " + nom + " a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
-    nom = data[0]['horaire aller']
-    speechText = nom
-    displayText = nom
+    hoa = data[0]['horaire aller']
+    hor = data[0]['horaire retour']
+    speech = "Le bus a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
+    #nom = data[0]['horaire aller']
     return {
-        "speech": speechText,
-        "displayText": displayText,
+        "speech": speech,
+        "displayText": speech,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
