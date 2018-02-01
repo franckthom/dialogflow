@@ -54,6 +54,7 @@ def webhook():
 
 #appel des API
 def processRequest(req):
+    #météo
     if req.get("result").get("action")=="yahooWeatherForecast":
         baseurl = "https://query.yahooapis.com/v1/public/yql?"
         yql_query = makeYqlQuery(req)
@@ -63,18 +64,24 @@ def processRequest(req):
         result = urlopen(yql_url).read()
         data = json.loads(result)
         res = makeWebhookResult(data)
+    #joke
     elif req.get("result").get("action")=="getjoke":
         baseurl = "http://api.icndb.com/jokes/random"
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
-    elif req.get("result").get("action")=="readsheet":
-        #baseurl = "https://sheetsu.com/apis/v1.0su/8a25665b30da"
-        #result = urlopen(baseurl).read()
-        Gs_query = makeGsQuery(req)
+    #sheet exposant
+    elif req.get("result").get("action")=="readsheet-exp":
+        Gs_query = makeGsExpQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(nom=Gs_query)
-        res = makeWebhookResultForSheets(data)
+        data = client.search(sheet="ROOMn", nom=Gs_query)
+        res = makeWebhookResultForSheetsExp(data)
+     #sheet bus
+    elif req.get("result").get("action")=="readsheet-bus":
+        Gs_query = makeGsBusQuery(req)
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
+        data = client.search(sheet="Bus", nom=Gs_query)
+        res = makeWebhookResultForSheetsBus(data)
     else:
         return {}
 
@@ -94,7 +101,7 @@ def makeWebhookResultForGetJoke(data):
         "source": "apiai-weather-webhook-sample"
     }
 
-def makeGsQuery(req):
+def makeGsExpQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
     exp = parameters.get("Exposant")
@@ -103,11 +110,35 @@ def makeGsQuery(req):
     return exp
 
 
-def makeWebhookResultForSheets(data):
+def makeWebhookResultForSheetsExp(data):
     nom = data[0]['nom']
     emp = data[0]['emplacement']
     des = data[0]['description']
     speech = nom + " ce trouve à l'emplacement " + emp + ", c'est un " + des
+    speechText = speech
+    displayText = speech
+    return {
+        "speech": speechText,
+        "displayText": displayText,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
+
+def makeGsBusQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    exp = parameters.get("Bus")
+    if exp is None:
+        return None
+    return exp
+
+
+def makeWebhookResultForSheetsBus(data):
+    nom = data[0]['nom']
+    hoa = data[0]['horaire aller']
+    hor = data[0]['horaire retour']
+    speech = "le " + nom + " a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
     speechText = speech
     displayText = speech
     return {
