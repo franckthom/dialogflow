@@ -25,7 +25,7 @@ from urllib.error import HTTPError
 import json
 import os
 
-import config
+import configparser
 
 from sheetsu import SheetsuClient
 #import gspread
