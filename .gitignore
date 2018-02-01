@@ -1,6 +1,6 @@
 ### Python template
 # Byte-compiled / optimized / DLL files
-config.py
+config.ini
 __pycache__/
 *.py[cod]
 *$py.class
