@@ -74,13 +74,13 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-exp":
         Gs_query = makeGsExpQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(sheet="ROOMn", nom=Gs_query)
+        data = client.search(nom=Gs_query)
         res = makeWebhookResultForSheetsExp(data)
      #sheet bus
     elif req.get("result").get("action")=="readsheet-bus":
         Gs_query = makeGsBusQuery(req)
-        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(sheet="Bus", nom=Gs_query)
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/0042cc74deeb")
+        data = client.search(nom=Gs_query)
         res = makeWebhookResultForSheetsBus(data)
     else:
         return {}
