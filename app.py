@@ -107,7 +107,7 @@ def makeWebhookResultForSheets(data):
     nom = data[0]['nom']
     emp = data[0]['emplacement']
     des = data[0]['description']
-    speech = nom " ce trouve à l'emplacement " emp ", c'est un " des
+    speech = nom + " ce trouve à l'emplacement " + emp + ", c'est un " + des
     speechText = speech
     displayText = speech
     return {
