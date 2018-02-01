@@ -97,7 +97,7 @@ def makeWebhookResultForGetJoke(data):
 def makeGsQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
-    exp = parameters.get("given-name")
+    exp = parameters.get("Exposant")
     if exp is None:
         return None
     return exp
