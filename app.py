@@ -85,7 +85,7 @@ def processRequest(req):
         res = makeWebhookResultForSheetsBus(data)
       #geolocation
      elif req.get("result").get("action")=="show-location":
-        baseurl = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + api_key
+        baseurl = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + config.api_key
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetLocation(data)
