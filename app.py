@@ -83,6 +83,13 @@ def processRequest(req):
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/0042cc74deeb")
         data = client.read(limit=2)
         res = makeWebhookResultForSheetsBus(data)
+      #geolocation
+     elif req.get("result").get("action")=="show-location":
+        baseurl = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + api_key
+        result = urlopen(baseurl).read()
+        data = json.loads(result)
+        res = makeWebhookResultForGetLocation(data)
+    
     else:
         return {}
 
@@ -101,7 +108,7 @@ def makeWebhookResultForGetJoke(data):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
-
+#fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
@@ -110,23 +117,21 @@ def makeGsExpQuery(req):
         return None
     return exp
 
-
+#fonction qui trie les données à afficher pour API googlesheet exposant
 def makeWebhookResultForSheetsExp(data):
     nom = data[0]['nom']
     emp = data[0]['emplacement']
     des = data[0]['description']
     speech = nom + " ce trouve à l'emplacement " + emp + ", c'est un " + des
-    speechText = speech
-    displayText = speech
     return {
-        "speech": speechText,
-        "displayText": displayText,
+        "speech": speech,
+        "displayText": speech,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
 
-
+#fonction afin d'afficher API googlesheet pour bus
 def makeWebhookResultForSheetsBus(data):
     hoa = data[0]['horaire aller']
     hor = data[0]['horaire retour']
@@ -135,6 +140,17 @@ def makeWebhookResultForSheetsBus(data):
     return {
         "speech": speech,
         "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
+
+def makeWebhookResultForGetLocation(data):
+    speechText = data
+    displayText = data
+    return {
+        "speech": speechText,
+        "displayText": displayText,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
