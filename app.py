@@ -78,9 +78,8 @@ def processRequest(req):
         res = makeWebhookResultForSheetsExp(data)
      #sheet bus
     elif req.get("result").get("action")=="readsheet-bus":
-        GsBus_query = makeGsBusQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/0042cc74deeb")
-        data = client.search(nom=GsBus_query)
+        data = client.read(limit=2)
         res = makeWebhookResultForSheetsBus(data)
     else:
         return {}
@@ -125,22 +124,13 @@ def makeWebhookResultForSheetsExp(data):
         "source": "apiai-weather-webhook-sample"
     }
 
-def makeGsBusQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    exp = parameters.get("Bus")
-    if exp is None:
-        return None
-    return exp
-
 
 def makeWebhookResultForSheetsBus(data):
-    nom = data[0]['nom']
-    hoa = data[0]['horaire aller']
-    hor = data[0]['horaire retour']
-    speech = "Le " + nom + " a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
-    speechText = speech
-    displayText = speech
+    #hoa = data[0]['horaire aller']
+    #hor = data[0]['horaire retour']
+    #speech = "Le " + nom + " a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
+    speechText = data
+    displayText = data
     return {
         "speech": speechText,
         "displayText": displayText,
