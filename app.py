@@ -162,7 +162,7 @@ def makeGsSesQuery(req):
 
 def makeWebhookResultForSheetsSes(data):
     nom = data[0]['nom session']
-    date = data['date']
+    date = data[]['date']
     speech = "Les sessions: " + nom + " ce dérouleront le " + date
     return {
         "speech": speech,
