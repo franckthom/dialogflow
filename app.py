@@ -83,6 +83,14 @@ def processRequest(req):
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
         data = client.read(sheet="Bus", limit=2)
         res = makeWebhookResultForSheetsBus(data)
+     #sheet session
+    elif req.get("result").get("action")=="readsheet-ses":
+        GsSes_query = makeGsSesQuery(req)
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
+        data = client.search(sheet="Session", date=GsSes_query) 
+        res = makeWebhookResultForSheetsSes(data)
+        
+    
       #geolocation
      #elif req.get("result").get("action")=="show-location":
         #baseurl = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + config.api_key
@@ -136,7 +144,6 @@ def makeWebhookResultForSheetsBus(data):
     hoa = data[0]['horaire aller']
     hor = data[0]['horaire retour']
     speech = "Le bus a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
-    #nom = data[0]['horaire aller']
     return {
         "speech": speech,
         "displayText": speech,
@@ -145,16 +152,36 @@ def makeWebhookResultForSheetsBus(data):
         "source": "apiai-weather-webhook-sample"
     }
 
-def makeWebhookResultForGetLocation(data):
-    speechText = data
-    displayText = data
+def makeGsSesQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    date = parameters.get("date")
+    if date is None:
+        return None
+    return date
+
+def makeWebhookResultForSheetsSes(data):
+    nom = data[0]['nom session']
+    date = data[0]['date']
+    speech = "Les sessions: " + nom + " ce dérouleront le " + date
     return {
-        "speech": speechText,
-        "displayText": displayText,
+        "speech": speech,
+        "displayText": speech,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
+
+#def makeWebhookResultForGetLocation(data):
+    #speechText = data
+    #displayText = data
+    #return {
+        #"speech": speechText,
+        #"displayText": displayText,
+        # "data": data,
+        # "contextOut": [],
+        #"source": "apiai-weather-webhook-sample"
+    #}
 
 
 #fonction création de la query pour API météo
