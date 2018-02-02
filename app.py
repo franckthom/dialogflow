@@ -87,7 +87,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-ses":
         GsSes_query = makeGsSesQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(sheet="Session", date=GsSes_query, limit=4) 
+        data = client.search(sheet="Session", date=*GsSes_query*, limit=4) 
         res = makeWebhookResultForSheetsSes(data)
         
     
@@ -151,7 +151,7 @@ def makeWebhookResultForSheetsBus(data):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
-
+#fonction pour prendre le parametre date pour Sheet session
 def makeGsSesQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
@@ -159,7 +159,7 @@ def makeGsSesQuery(req):
     if date is None:
         return None
     return date
-
+#fonction afin d'afficher API googlesheet pour session
 def makeWebhookResultForSheetsSes(data):
     nom = data[0]['nom session']
     date = data[0]['date']
