@@ -25,7 +25,7 @@ from urllib.error import HTTPError
 import json
 import os
 
-import configparser
+#import configparser
 
 from sheetsu import SheetsuClient
 #import gspread
@@ -76,19 +76,19 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-exp":
         GsExp_query = makeGsExpQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(nom=GsExp_query)
+        data = client.search(sheet="Exposant", nom=GsExp_query)
         res = makeWebhookResultForSheetsExp(data)
      #sheet bus
     elif req.get("result").get("action")=="readsheet-bus":
-        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/0042cc74deeb")
-        data = client.read(limit=2)
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
+        data = client.read(sheet="Bus", limit=2)
         res = makeWebhookResultForSheetsBus(data)
       #geolocation
-     elif req.get("result").get("action")=="show-location":
-        baseurl = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + config.api_key
-        result = urlopen(baseurl).read()
-        data = json.loads(result)
-        res = makeWebhookResultForGetLocation(data)
+     #elif req.get("result").get("action")=="show-location":
+        #baseurl = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + config.api_key
+        #result = urlopen(baseurl).read()
+        #data = json.loads(result)
+        #res = makeWebhookResultForGetLocation(data)
     
     else:
         return {}
