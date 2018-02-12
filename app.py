@@ -87,7 +87,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-ses":
         GsSes_query = makeGsSesQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(sheet="Session", date=GsSes_query, offset=0) 
+        data = client.search(sheet="Session", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
         
     
@@ -161,7 +161,7 @@ def makeGsSesQuery(req):
     return date
 #fonction afin d'afficher API googlesheet pour session
 def makeWebhookResultForSheetsSes(data):
-    cb = len(data)
+    #cb = len(data)
     nom = data[0]['nom session']
     date = data[0]['date']
     speech = "Les sessions: " + nom + " ce dérouleront le " + date 
