@@ -165,7 +165,7 @@ def makeGsSesQuery(req):
 #fonction afin d'afficher API googlesheet pour session
 def makeWebhookResultForSheetsSes(data):
     for index in range(len(data)):
-       nom1 = data[index]
+       nom1 = data[index]['nom session']
        #nom2 = data[index-1]['nom session']
     #date = data[0]['date']
     speech = "Les sessions: " + nom1
