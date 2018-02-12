@@ -116,6 +116,7 @@ def makeWebhookResultForGetJoke(data):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
+
 #fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
     result = req.get("result")
@@ -151,6 +152,7 @@ def makeWebhookResultForSheetsBus(data):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
+
 #fonction pour prendre le parametre date pour Sheet session
 def makeGsSesQuery(req):
     result = req.get("result")
@@ -159,11 +161,11 @@ def makeGsSesQuery(req):
     if date is None:
         return None
     return date
+
 #fonction afin d'afficher API googlesheet pour session
 def makeWebhookResultForSheetsSes(data):
     for index in range(len(data)):
     nom = data[index]['nom session']
-    
     date = data[0]['date']
     speech = "Les sessions: " + nom + " ce dérouleront le " + date 
     return {
