@@ -89,11 +89,11 @@ def processRequest(req):
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
         data = client.search(sheet="Session", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
-    elif req.get("result").get("action")=="readsheet-ses-now":
-        GsSesNow_query = makeGsSesNowQuery(req)
-        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(sheet="Session", datetime=GsSesNow_query) 
-        res = makeWebhookResultForSheetsSesNow(data)
+    #elif req.get("result").get("action")=="readsheet-ses-now":
+        #GsSesNow_query = makeGsSesNowQuery(req)
+        #client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
+        #data = client.search(sheet="Session", datetime=GsSesNow_query) 
+        #res = makeWebhookResultForSheetsSesNow(data)
     
     else:
         return {}
@@ -176,29 +176,29 @@ def makeWebhookResultForSheetsSes(data):
         "source": "apiai-weather-webhook-sample"
     }
 
-def makeGsSesNowQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    datetime = parameters.get("time")
-    if datetime is None:
-        return None
-    return datetime
+#def makeGsSesNowQuery(req):
+    #result = req.get("result")
+    #parameters = result.get("parameters")
+    #datetime = parameters.get("time")
+    #if datetime is None:
+        #return None
+    #return datetime
 
-def makeWebhookResultForSheetsSesNow(data):
-    data_len = len(data)
-    for i in range(0, data_len):
-    nom1 = data[i]['nom session']
+#def makeWebhookResultForSheetsSesNow(data):
+    #data_len = len(data)
+    #for i in range(0, data_len):
+    #nom1 = data[i]['nom session']
        #nom2 = data[index-1]['nom session']
     #date = data[0]['date']
-    speech = "Les sessions: " + nom1
+    #speech = "Les sessions: " + nom1
     #+ " ce dérouleront le " + date 
-    return {
-        "speech": speech,
-        "displayText": speech,
+    #return {
+        #"speech": speech,
+        #"displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-    }
+        #"source": "apiai-weather-webhook-sample"
+    #}
 
 
 #fonction création de la query pour API météo
