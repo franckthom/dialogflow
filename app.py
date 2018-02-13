@@ -89,7 +89,7 @@ def processRequest(req):
         data = client.search(sheet="Session", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
     elif req.get("result").get("action")=="geolocate":
-        base_url = "https://freegeoip.net/json/"
+        baseurl = "https://freegeoip.net/json/"
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetGeo(data)
@@ -107,7 +107,7 @@ def processRequest(req):
 def makeWebhookResultForGetGeo(data):
     lat = data.get('latitude')
     lon = data.get('longitude')
-    speech = "la latitude est: " + lat + ", la longitude est: " + lon
+    speech = lat + lon
     return {
         "speech": speech,
         "displayText": speech,
