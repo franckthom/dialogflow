@@ -24,7 +24,6 @@ from urllib.error import HTTPError
 
 import json
 import os
-import requests
 #import configparser
 
 from sheetsu import SheetsuClient
