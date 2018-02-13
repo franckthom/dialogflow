@@ -163,8 +163,9 @@ def makeGsSesQuery(req):
 def makeWebhookResultForSheetsSes(data):
     data_len = len(data)
     for i in range(0, data_len):
-        nom1 = data[i]
-    #nom2 = data[index-1]['nom session']
+        nom1 = len(data[i])
+        
+    
     #date = data[0]['date']
     #speech = "Les sessions: " + nom1
     #+ " ce dérouleront le " + date 
