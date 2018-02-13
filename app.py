@@ -34,7 +34,7 @@ from sheetsu import SheetsuClient
 from flask import Flask
 from flask import request
 from flask import make_response
-
+z
 # Flask app should start in global layout
 app = Flask(__name__)
 
@@ -162,6 +162,7 @@ def makeGsSesQuery(req):
 #fonction afin d'afficher API googlesheet pour session
 def makeWebhookResultForSheetsSes(data):
     data_len = len(data)
+    i = 0
     while(i < data_len):
         nom1 += data[i]['nom session']
         
