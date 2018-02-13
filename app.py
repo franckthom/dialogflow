@@ -164,8 +164,8 @@ def makeWebhookResultForSheetsSes(data):
     data_len = len(data)
     for i in range(0, data_len):
         nom1 = len(data[i])
-        for n in range(0, nom1):
-            nom2 = data[i][n]
+        #for n in range(0, nom1):
+            #nom2 = data[i][n]
         
     
     #date = data[0]['date']
