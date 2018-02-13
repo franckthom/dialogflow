@@ -164,16 +164,12 @@ def makeWebhookResultForSheetsSes(data):
     data_len = len(data)
     for i in range(0, data_len):
         nom1 = data[i]['nom session']
-        #for n in range(0, nom1):
-            #nom2 = data[i][n]
-        
-    
     #date = data[0]['date']
     #speech = "Les sessions: " + nom1
     #+ " ce dérouleront le " + date 
     return {
-        "speech": nom1
-        "displayText": nom1
+        "speech": nom1,
+        "displayText": nom1,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
