@@ -34,7 +34,7 @@ from sheetsu import SheetsuClient
 from flask import Flask
 from flask import request
 from flask import make_response
-z
+
 # Flask app should start in global layout
 app = Flask(__name__)
 
