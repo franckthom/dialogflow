@@ -24,7 +24,7 @@ from urllib.error import HTTPError
 
 import json
 import os
-
+import requests
 #import configparser
 
 from sheetsu import SheetsuClient
@@ -89,6 +89,11 @@ def processRequest(req):
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
         data = client.search(sheet="Session", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
+    elif req.get("result").get("action")=="geolocate":
+        base_url = "https://freegeoip.net/json/"
+        result = urlopen(baseurl).read()
+        data = json.loads(result)
+        res = makeWebhookResultForGetGeo(data)
     #elif req.get("result").get("action")=="readsheet-ses-now":
         #GsSesNow_query = makeGsSesNowQuery(req)
         #client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
@@ -100,6 +105,17 @@ def processRequest(req):
 
     return res
 
+def makeWebhookResultForGetGeo(data):
+    lat = data.get('latitude')
+    lon = data.get('longitude')
+    speech = "la latitude est: " + lat + ", la longitude est: " + lon
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 #fonction pour afficher API joke
 def makeWebhookResultForGetJoke(data):
     valueString = data.get('value')
