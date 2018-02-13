@@ -164,7 +164,7 @@ def makeWebhookResultForSheetsSes(data):
     data_len = len(data)
     i = 0
     while(i < data_len):
-        nom1 += data[i]
+        nom1 = data[i]
         
     #date = data[0]['date']
     #speech = "Les sessions: " + nom1
