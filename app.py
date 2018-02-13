@@ -106,8 +106,8 @@ def processRequest(req):
 
 def makeWebhookResultForGetGeo(data):
     lat = data.get('latitude')
-    lon = data['longitude']
-    speech = lon + lat
+    lon = data.get('longitude')
+    speech = lon
     return {
         "speech": speech,
         "displayText": speech,
