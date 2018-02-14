@@ -181,7 +181,7 @@ def makeWebhookResultForSheetsSes(data):
     #for i in range(0, data_len):
     nom1 = data[0]['nom session']
     date = data[0]['date']
-    speech = "la session " + nom1 + "se déroulera le " + date
+    speech = "la session " + nom1 + " se déroulera le " + date
     return {
        "speech": speech,
        "displayText": speech,
@@ -251,8 +251,9 @@ def makeWebhookResult(data):
 
     # print(json.dumps(item, indent=4))
 
-    speech = "Aujourd'hui à " + location.get('city') + ": " + condition.get('text') + \
-             ", et la température est de " + condition.get('temp') + " " + units.get('temperature')
+    speech = "La météo à " + location.get('city') + ": "
+    #+ condition.get('text') + \
+             "La température est de " + condition.get('temp') + " " + units.get('temperature')
 
     print("Response:")
     print(speech)
