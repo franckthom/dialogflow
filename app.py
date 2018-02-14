@@ -88,6 +88,7 @@ def processRequest(req):
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
         data = client.search(sheet="Session", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
+      #geolocate  
     elif req.get("result").get("action")=="geolocate":
         baseurl = "https://freegeoip.net/json/"
         result = urlopen(baseurl).read()
@@ -180,11 +181,11 @@ def makeWebhookResultForSheetsSes(data):
     #for i in range(0, data_len):
     nom1 = data[0]['nom session']
     #date = data[0]['date']
-    speech = "la session " + nom1
+    #speech = "la session " + nom1
     #+ "se déroulera le " + date
     return {
-       "speech": speech,
-       "displayText": speech,
+       "speech": nom1,
+       "displayText": nom1,
        # "data": data,
        # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
