@@ -105,8 +105,8 @@ def processRequest(req):
     return res
 
 def makeWebhookResultForGetGeo(data):
-    lat = data['latitude']
     lon = data['longitude']
+    lat = data['latitude']
     speech = lon + lat
     return {
         "speech": speech,
@@ -178,7 +178,7 @@ def makeGsSesQuery(req):
 def makeWebhookResultForSheetsSes(data):
     data_len = len(data)
     for i in range(0, data_len):
-        nom1 += data[i]['nom session']
+        nom1 = data[i]['nom session']
         return {
        "speech": nom1,
        "displayText": nom1,
