@@ -189,9 +189,10 @@ def makeWebhookResultForSheetsSes(data):
           # "contextOut": [],
           #"source": "apiai-weather-webhook-sample"
         #}
+        str1 = ''.join(data)
     return {
-          "speech": data,
-          "displayText": data,
+          "speech": str1,
+          "displayText": str1,
            #"data": data,
            #"contextOut": [],
           "source": "apiai-weather-webhook-sample"
