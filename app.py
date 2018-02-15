@@ -179,17 +179,15 @@ def makeGsSesQuery(req):
 def makeWebhookResultForSheetsSes(data):
     data_len = len(data)
     for i in range(0, data_len):
-        nom3 = data[i]['nom session']
-        nom1 = data.append(nom3)
-    nom2 = str(nom1)
-    speech = "la session " + nom2
-    return {
-       "speech": speech,
-       "displayText": speech,
-       # "data": data,
-       # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-     }
+        nom1 = data[i]['nom session']
+        speech = "la session " + nom1
+        return {
+          "speech": speech,
+          "displayText": speech,
+          # "data": data,
+          # "contextOut": [],
+          "source": "apiai-weather-webhook-sample"
+        }
 
 #def makeGsSesNowQuery(req):
     #result = req.get("result")
