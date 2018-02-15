@@ -180,7 +180,8 @@ def makeWebhookResultForSheetsSes(data):
     data_len = len(data['nom session'])
     for i in range(0, data_len):
         nom1 = data[i]['nom session']
-        speech = "la session " + nom1
+        nom2 = str(nom1)
+        speech = "la session " + nom2
         return {
           "speech": speech,
           "displayText": speech,
