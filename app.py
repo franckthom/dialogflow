@@ -86,7 +86,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-ses":
         GsSes_query = makeGsSesQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(sheet="Session", date=GsSes_query) 
+        data = client.read(sheet="Session", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
       #geolocate  
     elif req.get("result").get("action")=="geolocate":
