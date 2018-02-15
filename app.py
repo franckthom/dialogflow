@@ -184,8 +184,8 @@ def makeWebhookResultForSheetsSes(data):
     speech1 = "la session " + nom1
     speech3 = speech2 + speech1
     return {
-          "speech": speech,
-          "displayText": speech,
+          "speech": speech3,
+          "displayText": speech3,
            "data": data,
            "contextOut": [],
           "source": "apiai-weather-webhook-sample"
