@@ -190,9 +190,10 @@ def makeWebhookResultForSheetsSes(data):
           #"source": "apiai-weather-webhook-sample"
         #}
         str1 = data['nom session']
+        str2 = str(str1)
         return {
-          "speech": str1,
-          "displayText": str1,
+          "speech": str2,
+          "displayText": str2,
            #"data": data,
            #"contextOut": [],
           "source": "apiai-weather-webhook-sample"
