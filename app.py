@@ -182,8 +182,7 @@ def makeWebhookResultForSheetsSes(data):
         #nom1 = data[i]['nom session']
         #speech = "la session " + nom1
     speech = []
-    dat = data[0]
-    for each in dat:
+    for each in data:
         speech.append(each['nom session'])
     return {
           "speech": speech,
