@@ -94,11 +94,11 @@ def processRequest(req):
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetGeo(data)
-    #elif req.get("result").get("action")=="readsheet-ses-now":
-        #GsSesNow_query = makeGsSesNowQuery(req)
-        #client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        #data = client.search(sheet="Session", datetime=GsSesNow_query) 
-        #res = makeWebhookResultForSheetsSesNow(data)
+    elif req.get("result").get("action")=="readsheet-ses-now":
+        GsSesNow_query = makeGsSesNowQuery(req)
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
+        data = client.search(sheet="Session", datetime=GsSesNow_query) 
+        res = makeWebhookResultForSheetsSesNow(data)
     
     else:
         return {}
@@ -177,10 +177,6 @@ def makeGsSesQuery(req):
 
 #fonction afin d'afficher API googlesheet pour session
 def makeWebhookResultForSheetsSes(data):
-    #data_len = len(data)
-    #for i in range(data_len):
-        #nom1 = data[i]['nom session']
-        #speech = "la session " + nom1
     value = []
     for each in data:
         value.append(each['nom session'])
@@ -195,29 +191,27 @@ def makeWebhookResultForSheetsSes(data):
         }
         
 
-#def makeGsSesNowQuery(req):
-    #result = req.get("result")
-    #parameters = result.get("parameters")
-    #datetime = parameters.get("time")
-    #if datetime is None:
-        #return None
-    #return datetime
+def makeGsSesNowQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    datetime = parameters.get("time")
+    if datetime is None:
+        return None
+    return datetime
 
-#def makeWebhookResultForSheetsSesNow(data):
-    #data_len = len(data)
-    #for i in range(0, data_len):
-    #nom1 = data[i]['nom session']
-       #nom2 = data[index-1]['nom session']
-    #date = data[0]['date']
-    #speech = "Les sessions: " + nom1
-    #+ " ce dérouleront le " + date 
-    #return {
-        #"speech": speech,
-        #"displayText": speech,
+def makeWebhookResultForSheetsSesNow(data):
+    value = []
+    for each in data:
+        value.append(each['nom session'])
+    nom = ', '.join(map(str, value))
+    speech = "Les sessions sont: " + nom
+    return {
+        "speech": speech,
+        "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        #"source": "apiai-weather-webhook-sample"
-    #}
+        "source": "apiai-weather-webhook-sample"
+    }
 
 
 #fonction création de la query pour API météo
