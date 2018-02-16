@@ -185,7 +185,7 @@ def makeWebhookResultForSheetsSes(data):
     dat = data[0]
     for each in dat:
         speech.append({'nom session': each['nom session']})
-    speech1 = str(speech)
+        speech1 = str(speech)
     return {
           "speech": speech1,
           "displayText": speech1,
