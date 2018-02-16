@@ -177,20 +177,21 @@ def makeGsSesQuery(req):
 
 #fonction afin d'afficher API googlesheet pour session
 def makeWebhookResultForSheetsSes(data):
-    #data_len = len(data)
-    #for i in range(data_len):
-        #nom1 = data[i]['nom session']
-        #speech = "la session " + nom1
-    speech = []
-    dat = data[0]
-    for each in dat:
-        speech.append({'nom session': each['nom session']})
-        speech1 = str(speech)
+    nom1 = []
+    data_len = len(data)
+    for i in range(data_len):
+        nom1 = data[i]['nom session']
+        speech = "la session " + nom1
+    #speech = []
+    #dat = data[0]
+    #for each in dat:
+        #speech.append({'nom session': each['nom session']})
+        #speech1 = str(speech)
     return {
-          "speech": speech1,
-          "displayText": speech1,
-           "data": data,
-           "contextOut": [],
+          "speech": speech,
+          "displayText": speech,
+           #"data": data,
+           #"contextOut": [],
           "source": "apiai-weather-webhook-sample"
         }
         
