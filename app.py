@@ -27,6 +27,7 @@ import os
 #import configparser
 
 from sheetsu import SheetsuClient
+from datetime import datetime, time
 #import gspread
 #from oauth2client.service_account import ServiceAccountCredentials
 
@@ -194,12 +195,13 @@ def makeWebhookResultForSheetsSes(data):
 def makeGsSesNowQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
-    datetime = parameters.get("time")
-    if datetime is None:
+    datenow = parameters.get("time")
+    if datenow is None:
         return None
-    return datetime
+    return datenow
 
 def makeWebhookResultForSheetsSesNow(data):
+    now = datetime.now(data[)
     value = []
     for each in data:
         value.append(each['nom session'])
