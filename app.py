@@ -98,7 +98,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-ses-now":
         GsSesNow_query = makeGsSesNowQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.search(sheet="Session", datetime=GsSesNow_query) 
+        data = client.search(sheet="Session") 
         res = makeWebhookResultForSheetsSesNow(data)
     
     else:
@@ -192,16 +192,20 @@ def makeWebhookResultForSheetsSes(data):
         }
         
 
-def makeGsSesNowQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    datenow = parameters.get("time")
-    if datenow is None:
-        return None
-    return datenow
+#def makeGsSesNowQuery(req):
+    #result = req.get("result")
+    #parameters = result.get("parameters")
+    #time = parameters.get("time")
+    #if time is None:
+        #return None
+    #return time
 
+#fonction permettant d'afficher les sessions en temps réels à terminer
 def makeWebhookResultForSheetsSesNow(data):
-    now = datetime.now(data[)
+    from datetime import datetime, time
+    now = datetime.now()
+    now_time = now.time()
+    if time()
     value = []
     for each in data:
         value.append(each['nom session'])
