@@ -235,6 +235,7 @@ def makeOwmQuery(req):
     city = parameters.get("geo-city")
     if city is None:
         return None
+    return city
 
 def makeWebhookResultopen(data):
     return {
