@@ -238,8 +238,8 @@ def makeOwmQuery(req):
 
 def makeWebhookResultopen(data):
     return {
-        "speech": speech,
-        "displayText": speech,
+        "speech": data,
+        "displayText": data,
          "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
