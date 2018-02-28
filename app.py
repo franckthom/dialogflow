@@ -237,7 +237,6 @@ def makeOwmQuery(req):
         return None
 
 def makeWebhookResultopen(data):
-    speech = data
     return {
         "speech": speech,
         "displayText": speech,
