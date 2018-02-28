@@ -66,6 +66,16 @@ def processRequest(req):
         result = urlopen(yql_url).read()
         data = json.loads(result)
         res = makeWebhookResult(data)
+    #météoopen
+    elif req.get("result").get("action")=="openweather":
+        baseurl = "api.openweathermap.org/data/2.5/weather?q="
+        owm_query = makeOwmQuery(req)
+        if owm_query is none
+           return {}
+        owm_url = baseurl + owm_query + "&lang=fr"
+        result = urlopen(owm_url).read()
+        data = json.loads(result)
+        res = makeWebhookResultopen(data)
     #joke
     elif req.get("result").get("action")=="getjoke":
         baseurl = "http://api.icndb.com/jokes/random"
@@ -219,6 +229,22 @@ def makeWebhookResultForSheetsSesNow(data):
         "source": "apiai-weather-webhook-sample"
     }
 
+def makeOwmQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    city = parameters.get("geo-city")
+    if city is None:
+        return None
+
+def makeWebhookResultopen(data):
+    speech = data
+    return {
+        "speech": speech,
+        "displayText": speech,
+         "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 
 #fonction création de la query pour API météo
 def makeYqlQuery(req):
