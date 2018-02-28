@@ -70,7 +70,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="openweather":
         baseurl = "api.openweathermap.org/data/2.5/weather?q="
         owm_query = makeOwmQuery(req)
-        if owm_query is none
+        if owm_query is None:
            return {}
         owm_url = baseurl + owm_query + "&lang=fr"
         result = urlopen(owm_url).read()
