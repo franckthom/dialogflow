@@ -72,7 +72,7 @@ def processRequest(req):
         owm_query = makeOwmQuery(req)
         if owm_query is None:
            return {}
-        owm_url = baseurl + owm_query + "&lang=fr&APPID=" + config.apiowm
+        owm_url = baseurl + owm_query + "&lang=fr&APPID=8436a2c87fc4408d01d9f7f92e9759ca"
         result = urlopen(owm_url).read()
         data = json.loads(result)
         res = makeWebhookResultopen(data)
