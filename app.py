@@ -238,9 +238,10 @@ def makeOwmQuery(req):
     return city
 
 def makeWebhookResultopen(data):
+    speech = data
     return {
-        "speech": data,
-        "displayText": data,
+        "speech": speech,
+        "displayText": speech,
          "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
