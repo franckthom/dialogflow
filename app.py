@@ -100,11 +100,11 @@ def processRequest(req):
         data = client.search(sheet="Session", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
       #geolocate  
-    elif req.get("result").get("action")=="geolocate":
-        baseurl = "https://freegeoip.net/json/"
-        result = urlopen(baseurl).read()
-        data = json.loads(result)
-        res = makeWebhookResultForGetGeo(data)
+    #elif req.get("result").get("action")=="geolocate":
+        #baseurl = "https://freegeoip.net/json/"
+        #result = urlopen(baseurl).read()
+        #data = json.loads(result)
+        #res = makeWebhookResultForGetGeo(data)
     #elif req.get("result").get("action")=="readsheet-ses-now":
         #GsSesNow_query = makeGsSesNowQuery(req)
         #client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
