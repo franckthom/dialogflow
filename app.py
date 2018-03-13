@@ -238,7 +238,7 @@ def makeOwmQuery(req):
     return city
 
 def makeWebhookResultopen(data):
-    speech = data
+    speech = data['weather']
     return {
         "speech": speech,
         "displayText": speech,
