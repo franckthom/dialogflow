@@ -70,8 +70,8 @@ def processRequest(req):
     elif req.get("result").get("action")=="openweather":
         baseurl = "api.openweathermap.org/data/2.5/weather?"
         owm_query = makeOwmQuery(req)
-        if owm_query is None:
-           return {}
+        #if owm_query is None:
+           #return {}
         owm_url = baseurl + urlencode({'q': owm_query}) + "&lang=fr&APPID=8436a2c87fc4408d01d9f7f92e9759ca"
         result = urlopen(owm_url).read()
         data = json.loads(result)
@@ -233,8 +233,8 @@ def makeOwmQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
-    if city is None:
-        return None
+    #if city is None:
+        #return None
     return city
 
 def makeWebhookResultopen(data):
@@ -242,7 +242,7 @@ def makeWebhookResultopen(data):
     return {
         "speech": speech,
         "displayText": speech,
-         "data": data,
+         #"data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
