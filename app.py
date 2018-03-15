@@ -199,7 +199,7 @@ def makeGsSesQuery(req):
 def makeWebhookResultForSheetsSes(data):
     value = []
     for each in data:
-        value.append(each['titre'])
+        value.append(each['Partner'])
     nom = ', '.join(map(str, value))
     speech = "Les sessions sont: " + nom
     return {
