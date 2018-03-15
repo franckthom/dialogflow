@@ -85,18 +85,19 @@ def processRequest(req):
     #sheet exposant
     elif req.get("result").get("action")=="readsheet-exp":
         GsExp_query = makeGsExpQuery(req)
-        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
         data = client.search(sheet="Exposant", nom=GsExp_query)
         res = makeWebhookResultForSheetsExp(data)
      #sheet bus
     elif req.get("result").get("action")=="readsheet-bus":
-        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
-        data = client.read(sheet="Bus", limit=2)
+        GsBus_query = makeGsBusQuery(req)
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
+        data = client.search(sheet="Navette", date=GsBus_query)
         res = makeWebhookResultForSheetsBus(data)
      #sheet session
     elif req.get("result").get("action")=="readsheet-ses":
         GsSes_query = makeGsSesQuery(req)
-        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/8a25665b30da")
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
         data = client.search(sheet="Session", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
       #geolocate  
