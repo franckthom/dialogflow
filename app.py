@@ -177,7 +177,7 @@ def makeGsBusQuery(req):
 def makeWebhookResultForSheetsBus(data):
     hoa = data[0]['horaire aller']
     hor = data[0]['horaire retour']
-    speech = "Le bus a pour horaire: " + hoa + " l'aller et pour le retour: " + hor
+    speech = "Le bus a pour horaire aller: " + hoa + " et retour: " + hor
     return {
         "speech": speech,
         "displayText": speech,
