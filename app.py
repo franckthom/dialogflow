@@ -165,11 +165,19 @@ def makeWebhookResultForSheetsExp(data):
         "source": "apiai-weather-webhook-sample"
     }
 
+def makeGsBusQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    date = parameters.get("date")
+    if date is None:
+        return None
+    return date
+
 #fonction afin d'afficher API googlesheet pour bus
 def makeWebhookResultForSheetsBus(data):
     hoa = data[0]['horaire aller']
     hor = data[0]['horaire retour']
-    speech = "Le bus a pour horaire le matin: " + hoa + ", et pour le soir: " + hor
+    speech = "Le bus a pour horaire: " + hoa + " l'aller et pour le retour: " + hor
     return {
         "speech": speech,
         "displayText": speech,
