@@ -98,7 +98,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-ses":
         GsSes_query = makeGsSesQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
-        data = client.search(sheet="Session", date=GsSes_query) 
+        data = client.search(sheet="Conference", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
       #geolocate  
     #elif req.get("result").get("action")=="geolocate":
@@ -199,7 +199,7 @@ def makeGsSesQuery(req):
 def makeWebhookResultForSheetsSes(data):
     value = []
     for each in data:
-        value.append(each['nom session'])
+        value.append(each['Titre'])
     nom = ', '.join(map(str, value))
     speech = "Les sessions sont: " + nom
     return {
