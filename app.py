@@ -201,7 +201,8 @@ def makeWebhookResultForSheetsSes(data):
     for each in data:
         value.append(each['Partner'])
     nom = ', '.join(map(str, value))
-    speech = "Les partenaires  sont: " + nom
+    date = data['date']
+    speech = "Les partenaires exposant le " + date + " sont: " + nom
     return {
           "speech": speech,
           "displayText": speech,
