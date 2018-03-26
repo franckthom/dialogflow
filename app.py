@@ -209,8 +209,8 @@ def makeWebhookResultForSheetsSes(data):
 def makeWebhookResultForSheetsSesNow(data):
     #now = datetime.now()
     #now_time = now.time()
-    timestart = data['0']['Start time']
-    timeend = data['0']['End time']
+    timestart = data['Start time']
+    #timeend = data['0']['End time']
     #if time()
     #value = []
     #for each in data:
