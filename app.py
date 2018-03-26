@@ -212,7 +212,7 @@ def makeWebhookResultForSheetsSesNow(data):
     speech = " "
     timeStart = data[0]['Start time']
     timeEnd = data[0]['End time']
-    if now_time >= time(14,00,00) and now_time <= time(16,00,00):
+    if time(10,30,00) <= time(14,00,00) <= time(16,30,00):
        speech = "C'est dans l'intervalle"
     else:
        speech = "Ce n'est pas dans l'intervalle"
