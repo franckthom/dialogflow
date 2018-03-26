@@ -211,7 +211,7 @@ def makeWebhookResultForSheetsSesNow(data):
     now_time = now.time()
     timestart = data[0]['Start time']
     timeend = data[0]['End time']
-    if time(timestart) <= now_time <= time(timeend):
+    if time(14,00) <= now_time <= time(16,00):
        speech = "C'est dans l'intervalle"
     #value = []
     #for each in data:
@@ -219,7 +219,7 @@ def makeWebhookResultForSheetsSesNow(data):
     #nom = ', '.join(map(str, value))
     #speech = "Les sessions sont: " + nom
     
-       return {
+    return {
          "speech": speech,
          "displayText": speech,
          # "data": data,
