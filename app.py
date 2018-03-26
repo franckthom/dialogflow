@@ -219,13 +219,13 @@ def makeWebhookResultForSheetsSesNow(data):
     #nom = ', '.join(map(str, value))
     #speech = "Les sessions sont: " + nom
     
-    return {
+       return {
          "speech": speech,
          "displayText": speech,
          # "data": data,
          # "contextOut": [],
          "source": "apiai-weather-webhook-sample"
-     }
+        }
 
 def makeOwmQuery(req):
     result = req.get("result")
