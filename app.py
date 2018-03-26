@@ -209,14 +209,14 @@ def makeWebhookResultForSheetsSes(data):
 def makeWebhookResultForSheetsSesNow(data):
     now = datetime.now()
     timeStart = data[0]['Start time']
-    timeEnd = data[0]['End time']
-    if timeStart <= now.time() <= timeEnd:
-       speech = "C'est dans l'intervalle"
-    #value = []
-    #for each in data:
-        #value.append(each['Start time'])
-    #nom = ', '.join(map(str, value))
-    #speech = "Les sessions sont: " + nom
+    #timeEnd = data[0]['End time']
+    #if timeStart <= now.time() <= timeEnd:
+       #speech = "C'est dans l'intervalle"
+    value = []
+    for each in data:
+        value.append(each['Start time'])
+    nom = ', '.join(map(str, value))
+    speech = "Les sessions sont: " + nom
     
     return {
          "speech": speech,
