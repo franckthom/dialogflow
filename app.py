@@ -209,7 +209,6 @@ def makeWebhookResultForSheetsSes(data):
 def makeWebhookResultForSheetsSesNow(data):
     now = datetime.now()
     now_time = now.time()
-    speech = " "
     timeStart = data[0]['Start time']
     timeEnd = data[0]['End time']
     if time(10,30) <= time(14,00) <= time(16,30):
