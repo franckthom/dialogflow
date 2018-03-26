@@ -104,7 +104,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-ses-now":
         #GsSesNow_query = makeGsSesNowQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
-        data = client.read(sheet="Conference") 
+        data = client.search(sheet="Conference") 
         res = makeWebhookResultForSheetsSesNow(data)
     
     else:
