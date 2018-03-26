@@ -207,16 +207,16 @@ def makeWebhookResultForSheetsSes(data):
 
 #fonction permettant d'afficher les sessions en temps réels à terminer
 def makeWebhookResultForSheetsSesNow(data):
-    #now = datetime.now()
-    #now_time = now.time()
-    #timestart = data['Start time']
-    #timeend = data['0']['End time']
-    #if time()
-    value = []
-    for each in data:
-        value.append(each['Start time'])
-    nom = ', '.join(map(str, value))
-    speech = "Les sessions sont: " + nom
+    now = datetime.now()
+    timestart = data[0]['Start time']
+    timeend = data[0]['End time']
+    if time(timestart) <= now.time() <= time(timeend)
+       speech = "C'est dans l'intervalle"
+    #value = []
+    #for each in data:
+        #value.append(each['Start time'])
+    #nom = ', '.join(map(str, value))
+    #speech = "Les sessions sont: " + nom
     
     return {
         "speech": speech,
