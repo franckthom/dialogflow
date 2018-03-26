@@ -217,7 +217,7 @@ def makeWebhookResultForSheetsSesNow(data):
         #value.append(each['nom session'])
     #nom = ', '.join(map(str, value))
     #speech = "Les sessions sont: " + timestart
-    test = data[0]
+    test = data[0]['Start time']
     return {
         "speech": test,
         "displayText": test,
