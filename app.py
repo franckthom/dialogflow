@@ -209,9 +209,9 @@ def makeWebhookResultForSheetsSes(data):
 def makeWebhookResultForSheetsSesNow(data):
     now = datetime.now()
     now_time = now.time()
-    timestart = data[0]['Start time']
-    timeend = data[0]['End time']
-    if time(timestart) <= now_time <= time(timeend)
+    #timestart = data[0]['Start time']
+    #timeend = data[0]['End time']
+    if time(14,00) <= now_time <= time(16,00)
        speech = "C'est dans l'intervalle"
     #value = []
     #for each in data:
