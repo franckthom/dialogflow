@@ -102,7 +102,7 @@ def processRequest(req):
         res = makeWebhookResultForSheetsSes(data)
       #sheetnow  
     elif req.get("result").get("action")=="readsheet-ses-now":
-        GsSesNow_query = makeGsSesNowQuery(req)
+        #GsSesNow_query = makeGsSesNowQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
         data = client.search(sheet="Conference") 
         res = makeWebhookResultForSheetsSesNow(data)
@@ -112,17 +112,7 @@ def processRequest(req):
 
     return res
 
-def makeWebhookResultForGetGeo(data):
-    lon = data['longitude']
-    lat = data['latitude']
-    speech = lon + lat
-    return {
-        "speech": speech,
-        "displayText": speech,
-        "data": data,
-        # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-    }
+
 #fonction pour afficher API joke
 def makeWebhookResultForGetJoke(data):
     valueString = data.get('value')
@@ -217,8 +207,8 @@ def makeWebhookResultForSheetsSes(data):
 
 #fonction permettant d'afficher les sessions en temps réels à terminer
 def makeWebhookResultForSheetsSesNow(data):
-    now = datetime.now()
-    now_time = now.time()
+    #now = datetime.now()
+    #now_time = now.time()
     timestart = data['Start time']
     timeend = data['End time']
     #if time()
