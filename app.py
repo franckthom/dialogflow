@@ -210,6 +210,7 @@ def makeWebhookResultForSheetsSesNow(data):
     result = req.get("result")
     parameters = result.get("parameters")
     time = parameters.get("time")
+    now_time = now.time()
     timeStart = data[0]['Start time']
     timeEnd = data[0]['End time']
     if time(10,30) <= now_time <= time(16,30):
