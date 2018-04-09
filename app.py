@@ -301,6 +301,14 @@ def makeWebhookResult(data):
         "source": "apiai-weather-webhook-sample"
     }
 
+    msg = Message(api_key="56bd0b2b-4b67-4522-8933-1ff443a8a922",
+              platform="other",
+              version="0.1",
+              user_id="unique-str",
+              message="this is a test",
+              intent="test")
+    resp = msg.send()
+
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
