@@ -26,6 +26,7 @@ import json
 import os
 #import configparser
 
+from chatbase import Message
 from sheetsu import SheetsuClient
 from datetime import datetime, time
 #import gspread
