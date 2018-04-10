@@ -26,7 +26,7 @@ import json
 import os
 #import configparser
 
-from chatbase import Message
+from chatbase import Message, MessageSet, MessageTypes, InvalidMessageTypeError
 from sheetsu import SheetsuClient
 from datetime import datetime, time
 #import gspread
@@ -86,6 +86,7 @@ def processRequest(req):
     #sheet exposant
     elif req.get("result").get("action")=="readsheet-exp":
         GsExp_query = makeGsExpQuery(req)
+        chatbase = ChatBasequery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
         data = client.search(sheet="Exposant", nom=GsExp_query)
         res = makeWebhookResultForSheetsExp(data)
@@ -136,6 +137,11 @@ def makeGsExpQuery(req):
     if exp is None:
         return None
     return exp
+
+def ChatBasequery(req):
+    result = req.get("result")
+    metadata = result.get("metadata")
+    intent = metadata.get("intentName")
 
 #fonction qui trie les données à afficher pour API googlesheet exposant
 def makeWebhookResultForSheetsExp(data):
@@ -300,14 +306,6 @@ def makeWebhookResult(data):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
-
-    msg = Message(api_key="56bd0b2b-4b67-4522-8933-1ff443a8a922",
-              platform="other",
-              version="0.1",
-              user_id="unique-str",
-              message="this is a test",
-              intent="test")
-    resp = msg.send()
 
 
 if __name__ == '__main__':
