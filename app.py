@@ -111,14 +111,16 @@ def processRequest(req):
 
 #def chatbaseProcess(req):
 
-#def ChatBasequery(req):
-    #result = req.get("result")
-    #message_user = result.get("resolvedQuery")
-    #metadata = result.get("metadata")
-    #intent = metadata.get("intentName")
-    #timestamp = req.get("timestamp")
-    #user_id = req.get("id")
-    #platform = 'Dialogflow'
+def ChatBasequery(req):
+    result = req.get("result")
+    message_user = result.get("resolvedQuery")
+    metadata = result.get("metadata")
+    intent = metadata.get("intentName")
+    timestamp = req.get("timestamp")
+    user_id = req.get("id")
+    platform = 'Dialogflow'
+    
+    return message_user, metadata, intent, timestamp, user_id, platform
     
     
 #fonction pour créer la query pour exposant
