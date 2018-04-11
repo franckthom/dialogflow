@@ -109,7 +109,34 @@ def processRequest(req):
 
     return res
 
-#def chatbaseProcess(req):
+def chatbaseProcess(message_user, metadata, intent, timestamp, user_id, platform, api_key):
+    
+    # Create an instance of MessageSet to collect all the messages
+    message_set = MessageSet(api_key=api_key, platform=platform,
+             version=version, user_id=user_id)
+    # Create an instance of Message for the user message and set values in the constructor
+    msg1 = Message(api_key=api_key, platform=platform, message=message,
+            intent=intent, version=version, user_id=user_id,
+            type=MessageTypes.USER, not_handled=True,
+            time_stamp=time_stamp)
+    # Set the message as "handled" because the NLP was able to successfully decode the intent
+    msg1.set_as_feedback()
+
+    # Create an instance of Message for the bot response message and set values in the constructor
+    msg2 = Message(api_key=api_key, platform=platform, message=message,
+            version=version, user_id=user_id,
+            type=MessageTypes.AGENT)
+    message_set = MessageSet(api_key=api_key, platform=platform,
+                         version=version, user_id=user_id)
+
+    # Push messages into the collection (MessageSet)
+    message_set.append_message(msg1)
+    message_set.append_message(msg2)
+
+    # Send the messages
+    response = message_set.send()
+    # response.status_code will be 200 if sending worked
+    
 
 def ChatBasequery(req):
     result = req.get("result")
@@ -119,6 +146,7 @@ def ChatBasequery(req):
     timestamp = req.get("timestamp")
     user_id = req.get("id")
     platform = 'Dialogflow'
+    api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
     
     return message_user, metadata, intent, timestamp, user_id, platform
     
