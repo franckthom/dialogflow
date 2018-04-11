@@ -119,7 +119,7 @@ def ChatBasequery(req):
     timestamp = req.get("timestamp")
     user_id = req.get("id")
     platform = 'Web'
-    message_bot = req.get("fulfillment").get("speech")
+    
     
 #fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
