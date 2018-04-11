@@ -118,7 +118,7 @@ def processRequest(req):
     #intent = metadata.get("intentName")
     #timestamp = req.get("timestamp")
     #user_id = req.get("id")
-    #platform = 'Web'
+    #platform = 'Dialogflow'
     
     
 #fonction pour créer la query pour exposant
