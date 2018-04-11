@@ -77,12 +77,6 @@ def processRequest(req):
         result = urlopen(owm_url).read()
         data = json.loads(result)
         res = makeWebhookResultopen(data)
-    #joke
-    elif req.get("result").get("action")=="getjoke":
-        baseurl = "http://api.icndb.com/jokes/random"
-        result = urlopen(baseurl).read()
-        data = json.loads(result)
-        res = makeWebhookResultForGetJoke(data)
     #sheet exposant
     elif req.get("result").get("action")=="readsheet-exp":
         GsExp_query = makeGsExpQuery(req)
@@ -114,21 +108,6 @@ def processRequest(req):
 
     return res
 
-
-#fonction pour afficher API joke
-def makeWebhookResultForGetJoke(data):
-    valueString = data.get('value')
-    joke = valueString.get('joke')
-    speechText = joke
-    displayText = joke
-    return {
-        "speech": speechText,
-        "displayText": displayText,
-        # "data": data,
-        # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-    }
-
 #fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
     result = req.get("result")
@@ -142,6 +121,7 @@ def ChatBasequery(req):
     result = req.get("result")
     metadata = result.get("metadata")
     intent = metadata.get("intentName")
+    timestamp= req.get("timestamp")
 
 #fonction qui trie les données à afficher pour API googlesheet exposant
 def makeWebhookResultForSheetsExp(data):
