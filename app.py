@@ -111,6 +111,12 @@ def processRequest(req):
 
 def chatbaseProcess(req):
 
+def ChatBasequery(req):
+    result = req.get("result")
+    metadata = result.get("metadata")
+    intent = metadata.get("intentName")
+    timestamp= req.get("timestamp")    
+    
 #fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
     result = req.get("result")
@@ -119,12 +125,6 @@ def makeGsExpQuery(req):
     if exp is None:
         return None
     return exp
-
-def ChatBasequery(req):
-    result = req.get("result")
-    metadata = result.get("metadata")
-    intent = metadata.get("intentName")
-    timestamp= req.get("timestamp")
 
 #fonction qui trie les données à afficher pour API googlesheet exposant
 def makeWebhookResultForSheetsExp(data):
