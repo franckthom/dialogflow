@@ -109,6 +109,8 @@ def processRequest(req):
 
     return res
 
+def chatbaseProcess(req):
+
 #fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
     result = req.get("result")
