@@ -113,9 +113,13 @@ def chatbaseProcess(req):
 
 def ChatBasequery(req):
     result = req.get("result")
+    message_user = result.get("resolvedQuery")
     metadata = result.get("metadata")
     intent = metadata.get("intentName")
-    timestamp= req.get("timestamp")    
+    timestamp = req.get("timestamp")
+    user_id = req.get("id")
+    platform = 'Web'
+    message_bot = req.get("fulfillment").get("speech")
     
 #fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
