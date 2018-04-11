@@ -137,6 +137,8 @@ def chatbaseProcess(message_user, metadata, intent, timestamp, user_id, platform
     response = message_set.send()
     # response.status_code will be 200 if sending worked
     
+    return {}
+    
 
 def ChatBasequery(req):
     result = req.get("result")
