@@ -81,7 +81,7 @@ def processRequest(req):
     #sheet exposant
     elif req.get("result").get("action")=="readsheet-exp":
         GsExp_query = makeGsExpQuery(req)
-        chatbaseProcess(message_user, metadata, intent, timestamp, user_id, platform, api_key)
+        chatbaseProcess()
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
         data = client.search(sheet="Exposant", nom=GsExp_query)
         res = makeWebhookResultForSheetsExp(data)
