@@ -153,7 +153,7 @@ def ChatBasequery(req):
     response = message_set.send()
     # response.status_code will be 200 if sending worked
     
-    return None
+    return message_user, metadata, intent, timestamp, user_id, platform, api_key
     
     
 #fonction pour créer la query pour exposant
