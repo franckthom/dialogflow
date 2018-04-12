@@ -104,7 +104,8 @@ def processRequest(req):
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
         data = client.read(sheet="Conference") 
         res = makeWebhookResultForSheetsSesNow(data)
-    elif result = req.get("result")
+    elif req.get("lang")=="fr":
+        result = req.get("result")
         message_user = result.get("resolvedQuery")
         metadata = result.get("metadata")
         intent = metadata.get("intentName")
