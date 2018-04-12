@@ -82,7 +82,7 @@ def processRequest(req):
     elif req.get("result").get("action")=="readsheet-exp":
         GsExp_query = makeGsExpQuery(req)
         ChatBasequery(req)
-        chatbaseProcess(message_user, metadata, intent, timestamp, user_id, platform, api_key)
+        #chatbaseProcess(message_user, metadata, intent, timestamp, user_id, platform, api_key)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
         data = client.search(sheet="Exposant", nom=GsExp_query)
         res = makeWebhookResultForSheetsExp(data)
@@ -110,9 +110,24 @@ def processRequest(req):
 
     return res
 
-def chatbaseProcess(message_user, metadata, intent, timestamp, user_id, platform, api_key):
+#def chatbaseProcess(message_user, metadata, intent, timestamp, user_id, platform, api_key):
     
-    # Create an instance of MessageSet to collect all the messages
+   
+    
+    #return None
+    
+
+def ChatBasequery(req):
+    result = req.get("result")
+    message_user = result.get("resolvedQuery")
+    metadata = result.get("metadata")
+    intent = metadata.get("intentName")
+    timestamp = req.get("timestamp")
+    user_id = req.get("id")
+    platform = 'Dialogflow'
+    api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
+    
+     # Create an instance of MessageSet to collect all the messages
     message_set = MessageSet(api_key=api_key, platform=platform,
              version=version, user_id=user_id)
     # Create an instance of Message for the user message and set values in the constructor
@@ -139,19 +154,6 @@ def chatbaseProcess(message_user, metadata, intent, timestamp, user_id, platform
     # response.status_code will be 200 if sending worked
     
     return None
-    
-
-def ChatBasequery(req):
-    result = req.get("result")
-    message_user = result.get("resolvedQuery")
-    metadata = result.get("metadata")
-    intent = metadata.get("intentName")
-    timestamp = req.get("timestamp")
-    user_id = req.get("id")
-    platform = 'Dialogflow'
-    api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
-    
-    return message_user, metadata, intent, timestamp, user_id, platform
     
     
 #fonction pour créer la query pour exposant
