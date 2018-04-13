@@ -94,7 +94,7 @@ def processRequest(req):
             #version=version, user_id=user_id,
             #type=MessageTypes.AGENT)
         #message_set = MessageSet(api_key=api_key, platform=platform,
-                         version=version, user_id=user_id)
+                         #version=version, user_id=user_id)
 
           # Push messages into the collection (MessageSet)
         #message_set.append_message(msg1)
