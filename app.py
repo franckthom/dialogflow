@@ -58,7 +58,6 @@ def webhook():
 
 #appel des API
 def processRequest(req):
-    elif req.get("lang")=="fr":
         result = req.get("result")
         message_user = result.get("resolvedQuery")
         metadata = result.get("metadata")
