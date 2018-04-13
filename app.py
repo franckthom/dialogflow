@@ -111,14 +111,14 @@ def processRequest(req):
 
     return res
     
-  #result = req.get("result")
-  #message_user = result.get("resolvedQuery")
-  #metadata = result.get("metadata")
-  #intent = metadata.get("intentName")
-  #timestamp = req.get("timestamp")
-  #user_id = req.get("id")
-  #platform = 'Dialogflow'
-  #api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
+  result = req.get("result")
+  message_user = result.get("resolvedQuery")
+  metadata = result.get("metadata")
+  intent = metadata.get("intentName")
+  timestamp = req.get("timestamp")
+  user_id = req.get("id")
+  platform = 'Dialogflow'
+  api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
     
   # Create an instance of MessageSet to collect all the messages
   #message_set = MessageSet(api_key=api_key, platform=platform,
