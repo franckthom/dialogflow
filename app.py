@@ -111,8 +111,6 @@ def processRequest(req):
 
     return res
 
-chatbaseProcess(req)
-
 def chatbaseProcess(req):
     
     result = req.get("result")
@@ -150,8 +148,10 @@ def chatbaseProcess(req):
     response = message_set.send()
     # response.status_code will be 200 if sending worked
     
-    return None
+    return
     
+chatbaseProcess(req)
+
     
 #fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
