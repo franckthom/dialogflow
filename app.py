@@ -150,7 +150,6 @@ def chatbaseProcess(req):
     
     return
     
-chatbaseProcess(req)
 
     
 #fonction pour créer la query pour exposant
