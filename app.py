@@ -44,7 +44,6 @@ app = Flask(__name__)
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
-    chatbaseProcess(req)
     print("Request:")
     print(json.dumps(req, indent=4))
 
@@ -111,6 +110,8 @@ def processRequest(req):
         return {}
 
     return res
+
+chatbaseProcess(req)
 
 def chatbaseProcess(req):
     
