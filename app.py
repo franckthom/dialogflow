@@ -58,16 +58,6 @@ def webhook():
 
 #appel des API
 def processRequest(req):
-    #météo
-    if req.get("result").get("action")=="yahooWeatherForecast":
-        baseurl = "https://query.yahooapis.com/v1/public/yql?"
-        yql_query = makeYqlQuery(req)
-        if yql_query is None:
-           return {}
-        yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json&lang=fr-FR"
-        result = urlopen(yql_url).read()
-        data = json.loads(result)
-        res = makeWebhookResult(data)
     elif req.get("lang")=="fr":
         result = req.get("result")
         message_user = result.get("resolvedQuery")
@@ -103,6 +93,16 @@ def processRequest(req):
           # Send the messages
         #response = message_set.send()
           # response.status_code will be 200 if sending worked
+    #météo
+    if req.get("result").get("action")=="yahooWeatherForecast":
+        baseurl = "https://query.yahooapis.com/v1/public/yql?"
+        yql_query = makeYqlQuery(req)
+        if yql_query is None:
+           return {}
+        yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json&lang=fr-FR"
+        result = urlopen(yql_url).read()
+        data = json.loads(result)
+        res = makeWebhookResult(data)
     #météoopen
     elif req.get("result").get("action")=="openweather":
         baseurl = "api.openweathermap.org/data/2.5/weather?"
