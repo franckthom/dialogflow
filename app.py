@@ -114,8 +114,8 @@ def processRequest(req):
   
 def processChatbase(req):
   result = req.get("result")
-  message_user = result.get("resolvedQuery")
-  message_bot = req.get("fulfillment").get("speech")
+  message = result.get("resolvedQuery")
+  #message_bot = req.get("fulfillment").get("speech")
   metadata = result.get("metadata")
   intent = metadata.get("intentName")
   timestamp = req.get("timestamp")
