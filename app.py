@@ -121,6 +121,14 @@ def processChatbase(req):
   platform = 'Dialogflow'
   api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
     
+  msg = Message(api_key,
+              platform,
+              version,
+              user_id,
+              message,
+              intent)
+  resp = msg.send()
+    
   # Create an instance of MessageSet to collect all the messages
   #message_set = MessageSet(api_key=api_key, platform=platform,
              #version=version, user_id=user_id)
