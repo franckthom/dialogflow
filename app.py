@@ -115,13 +115,13 @@ def processRequest(req):
 def processChatbase(req):
   api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
   platform = 'Dialogflow'
+  version = "0.1"
+  user_id = req.get("id")
   result = req.get("result")
   message = result.get("resolvedQuery")
   #message_bot = req.get("fulfillment").get("speech")
   metadata = result.get("metadata")
   intent = metadata.get("intentName")
-  version = "0.1"
-  user_id = req.get("id")
   timestamp = req.get("timestamp")
  
     
