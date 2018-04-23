@@ -122,8 +122,8 @@ def processChatbase(req):
   api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
     
   # Create an instance of MessageSet to collect all the messages
-  message_set = MessageSet(api_key=api_key, platform=platform,
-             version=version, user_id=user_id)
+  #message_set = MessageSet(api_key=api_key, platform=platform,
+             #version=version, user_id=user_id)
   # Create an instance of Message for the user message and set values in the constructor
   #msg1 = Message(api_key=api_key, platform=platform, message=message,
             #intent=intent, version=version, user_id=user_id,
