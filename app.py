@@ -46,7 +46,7 @@ def webhook():
     req = request.get_json(silent=True, force=True)
     print("Request:")
     print(json.dumps(req, indent=4))
-
+    chat = processChatbase(req)
     res = processRequest(req)
 
     res = json.dumps(res, indent=4)
@@ -110,15 +110,18 @@ def processRequest(req):
         return {}
 
     return res
-    
-  #result = req.get("result")
-  #message_user = result.get("resolvedQuery")
-  #metadata = result.get("metadata")
-  #intent = metadata.get("intentName")
-  #timestamp = req.get("timestamp")
-  #user_id = req.get("id")
-  #platform = 'Dialogflow'
-  #api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
+  
+def processChatbase(req):
+  result = req.get("result")
+  message_user = result.get("resolvedQuery")
+  metadata = result.get("metadata")
+  intent = metadata.get("intentName")
+  timestamp = req.get("timestamp")
+  user_id = req.get("id")
+  platform = 'Dialogflow'
+  api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
+  
+  return None
     
   # Create an instance of MessageSet to collect all the messages
   #message_set = MessageSet(api_key=api_key, platform=platform,
@@ -146,9 +149,7 @@ def processRequest(req):
   #response = message_set.send()
   # response.status_code will be 200 if sending worked
     
-   
-    
-
+  
     
 #fonction pour créer la query pour exposant
 def makeGsExpQuery(req):
