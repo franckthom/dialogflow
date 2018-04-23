@@ -120,8 +120,6 @@ def processChatbase(req):
   user_id = req.get("id")
   platform = 'Dialogflow'
   api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
-  
-  return None
     
   # Create an instance of MessageSet to collect all the messages
   message_set = MessageSet(api_key=api_key, platform=platform,
@@ -145,9 +143,11 @@ def processChatbase(req):
   message_set.append_message(msg1)
   message_set.append_message(msg2)
 
-   Send the messages
+  # Send the messages
   response = message_set.send()
   # response.status_code will be 200 if sending worked
+
+  return None
     
   
     
