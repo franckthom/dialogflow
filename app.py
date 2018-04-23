@@ -130,26 +130,26 @@ def processChatbase(req):
   message_set = MessageSet(api_key=api_key, platform=platform,
                version=version, user_id=user_id)
   # Create an instance of Message for the user message and set values in the constructor
-  #msg1 = Message(api_key=api_key, platform=platform, message=message,
-            #intent=intent, version=version, user_id=user_id,
-            #type=MessageTypes.USER, not_handled=True,
-            #time_stamp=time_stamp)
+  msg1 = Message(api_key=api_key, platform=platform, message=message,
+            intent=intent, version=version, user_id=user_id,
+            type=MessageTypes.USER, not_handled=True,
+            time_stamp=time_stamp)
   # Set the message as "handled" because the NLP was able to successfully decode the intent
-  #msg1.set_as_feedback()
+  msg1.set_as_feedback()
 
   # Create an instance of Message for the bot response message and set values in the constructor
-  #msg2 = Message(api_key=api_key, platform=platform, message=message,
-            #version=version, user_id=user_id,
-            #type=MessageTypes.AGENT)
-  #message_set = MessageSet(api_key=api_key, platform=platform,
-                         #version=version, user_id=user_id)
+  msg2 = Message(api_key=api_key, platform=platform, message=message,
+            version=version, user_id=user_id,
+            type=MessageTypes.AGENT)
+  message_set = MessageSet(api_key=api_key, platform=platform,
+                         version=version, user_id=user_id)
 
   # Push messages into the collection (MessageSet)
-  #message_set.append_message(msg1)
-  #message_set.append_message(msg2)
+  message_set.append_message(msg1)
+  message_set.append_message(msg2)
 
   # Send the messages
-  #response = message_set.send()
+  response = message_set.send()
   # response.status_code will be 200 if sending worked
 
   return None
