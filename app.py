@@ -46,9 +46,10 @@ def webhook():
     req = request.get_json(silent=True, force=True)
     print("Request:")
     print(json.dumps(req, indent=4))
-    chat = processChatbase(req)
+    
     res = processRequest(req)
-
+    chat = processChatbase(req)
+    
     res = json.dumps(res, indent=4)
     # print(res)
     r = make_response(res)
@@ -113,7 +114,8 @@ def processRequest(req):
   
 def processChatbase(req):
   result = req.get("result")
-  message = result.get("resolvedQuery")
+  message_user = result.get("resolvedQuery")
+  message_bot = req.get("fulfillment").get("speech")
   metadata = result.get("metadata")
   intent = metadata.get("intentName")
   timestamp = req.get("timestamp")
@@ -122,17 +124,11 @@ def processChatbase(req):
   api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
   version = "0.1"
     
-  msg = Message(api_key,
-              platform,
-              version,
-              user_id,
-              message,
-              intent)
-  resp = msg.send()
+  
     
   # Create an instance of MessageSet to collect all the messages
-  #message_set = MessageSet(api_key=api_key, platform=platform,
-             #version=version, user_id=user_id)
+  message_set = MessageSet(api_key=api_key, platform=platform,
+               version=version, user_id=user_id)
   # Create an instance of Message for the user message and set values in the constructor
   #msg1 = Message(api_key=api_key, platform=platform, message=message,
             #intent=intent, version=version, user_id=user_id,
