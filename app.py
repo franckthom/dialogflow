@@ -144,7 +144,7 @@ def processChatbase(req):
   message_set.append_message(msg2)
 
   # Send the messages
-  response = message_set.send()
+  #response = message_set.send()
   # response.status_code will be 200 if sending worked
 
   return None
