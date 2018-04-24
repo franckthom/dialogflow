@@ -130,7 +130,8 @@ def processChatbase(req):
                     version = "0.1",
                     user_id = req.get("id"))
   msg = set.new_message(intent = metadata.get("intentName"),
-                        message = result.get("resolvedQuery"))
+                        message = result.get("resolvedQuery"),
+                        timestamp = req.get("timestamp"))
   resp = set.send()
   
   #msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
