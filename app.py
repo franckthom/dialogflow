@@ -123,59 +123,34 @@ def processChatbase(req):
   fulfillment = req.get("fulfillment")
   #intent = metadata.get("intentName")
   #timestamp = req.get("timestamp")
- 
-    
-  message_set = MessagesSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-              platform = 'Dialogflow',
-              version = "0.1",
-              user_id = req.get("id"))
-  
-  msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                 platform = 'Dialogflow',message = result.get("resolvedQuery"),
-              intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
-                 type=MessageTypes.USER,not_handled=True,timestamp = req.get("timestamp"))
-  
-  msg1.set_as_feedback()
 
-  msg2 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                 platform = 'Dialogflow',message = fulfillment.get("speech"),
-              intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
-                 type=MessageTypes.AGENT)
-  message_set = MessagesSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-              platform = 'Dialogflow',
-              version = "0.1",
-              user_id = req.get("id"))
- 
-  message_set.append_message(msg1)
-  message_set.append_message(msg2) 
     
-  response = message_set.send()
-    
-  # Create an instance of MessageSet to collect all the messages
-  #message_set = MessageSet(api_key=api_key, platform=platform,
-               #version=version, user_id=user_id)
-  # Create an instance of Message for the user message and set values in the constructor
-  #msg1 = Message(api_key=api_key, platform=platform, message=message,
-            #intent=intent, version=version, user_id=user_id,
-            #type=MessageTypes.USER, not_handled=True,
-            #time_stamp=time_stamp)
-  # Set the message as "handled" because the NLP was able to successfully decode the intent
+  set = MessagesSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                    platform = 'Dialogflow',
+                    version = "0.1",
+                    user_id = req.get("id"))
+  
+  #msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                 #platform = 'Dialogflow',message = result.get("resolvedQuery"),
+                 #intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
+                 #type=MessageTypes.USER,not_handled=True,timestamp = req.get("timestamp"))
+  
   #msg1.set_as_feedback()
 
-  # Create an instance of Message for the bot response message and set values in the constructor
-  #msg2 = Message(api_key=api_key, platform=platform, message=message,
-            #version=version, user_id=user_id,
-            #type=MessageTypes.AGENT)
-  #message_set = MessageSet(api_key=api_key, platform=platform,
-                         #version=version, user_id=user_id)
-
-  # Push messages into the collection (MessageSet)
+  #msg2 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                 #platform = 'Dialogflow',message = fulfillment.get("speech"),
+                 #intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
+                 #type=MessageTypes.AGENT)
+  #message_set = MessagesSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+              #platform = 'Dialogflow',
+              #version = "0.1",
+              #user_id = req.get("id"))
+ 
   #message_set.append_message(msg1)
-  #message_set.append_message(msg2)
-
-  # Send the messages
+  #message_set.append_message(msg2) 
+    
   #response = message_set.send()
-  # response.status_code will be 200 if sending worked
+   
 
   return None
     
