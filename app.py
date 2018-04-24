@@ -141,7 +141,7 @@ def processChatbase(req):
   msg2 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
                  platform = 'Dialogflow',message = fulfillment.get("speech"),
               intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
-                 type=MessageTypes.Agent)
+                 type=MessageTypes.AGENT)
   message_set = MessagesSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
               platform = 'Dialogflow',
               version = "0.1",
