@@ -117,10 +117,10 @@ def processChatbase(req):
   #platform = 'Dialogflow'
   #version = "0.1"
   #user_id = req.get("id")
-  #result = req.get("result")
+  result = req.get("result")
   #message = result.get("resolvedQuery")
   #message_bot = req.get("fulfillment").get("speech")
-  #metadata = result.get("metadata")
+  metadata = result.get("metadata")
   #intent = metadata.get("intentName")
   #timestamp = req.get("timestamp")
  
@@ -129,8 +129,8 @@ def processChatbase(req):
               platform = 'Dialogflow',
               version = "0.1",
               user_id = req.get("id"),
-              message = 'Bonsoir',
-              intent = 'Bonsoirintent')
+              message = result.get("resolvedQuery"),
+              intent = metadata.get("intentName"))
   resp = msg.send()
     
   
