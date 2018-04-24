@@ -119,7 +119,7 @@ def processChatbase(req):
   #user_id = req.get("id")
   result = req.get("result")
   #message = result.get("resolvedQuery")
-  #message_bot = req.get("fulfillment").get("speech")
+  fulfillement = req.get("fulfillment")
   metadata = result.get("metadata")
   fulfillment = req.get("fulfillment")
   #intent = metadata.get("intentName")
@@ -138,11 +138,19 @@ def processChatbase(req):
   
   msg1.set_as_feedback()
 
-  msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                 platform = 'Dialogflow',message = result.get("resolvedQuery"),
+  msg2 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                 platform = 'Dialogflow',message = fulfillment.get("speech"),
               intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
-                 type=MessageTypes.USER,not_handled=True,timestamp = req.get("timestamp"))
-  
+                 type=MessageTypes.Agent)
+  message_set = MessagesSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+              platform = 'Dialogflow',
+              version = "0.1",
+              user_id = req.get("id"))
+ 
+  message_set.append_message(msg1)
+  message_set.append_message(msg2) 
+    
+  response = message_set.send()
     
   # Create an instance of MessageSet to collect all the messages
   #message_set = MessageSet(api_key=api_key, platform=platform,
