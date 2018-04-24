@@ -119,7 +119,6 @@ def processChatbase(req):
   #user_id = req.get("id")
   result = req.get("result")
   #message = result.get("resolvedQuery")
-  fulfillement = req.get("fulfillment")
   metadata = result.get("metadata")
   fulfillment = req.get("fulfillment")
   #intent = metadata.get("intentName")
