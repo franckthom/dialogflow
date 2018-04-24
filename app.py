@@ -135,7 +135,13 @@ def processChatbase(req):
                  platform = 'Dialogflow',message = result.get("resolvedQuery"),
               intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
                  type=MessageTypes.USER,not_handled=True,timestamp = req.get("timestamp"))
-    
+  
+  msg1.set_as_feedback()
+
+  msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                 platform = 'Dialogflow',message = result.get("resolvedQuery"),
+              intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
+                 type=MessageTypes.USER,not_handled=True,timestamp = req.get("timestamp"))
   
     
   # Create an instance of MessageSet to collect all the messages
