@@ -129,6 +129,9 @@ def processChatbase(req):
                     platform = 'Dialogflow',
                     version = "0.1",
                     user_id = req.get("id"))
+  msg = set.new_message(intent = metadata.get("intentName"),
+                        message = result.get("resolvedQuery"))
+  resp = set.send()
   
   #msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
                  #platform = 'Dialogflow',message = result.get("resolvedQuery"),
