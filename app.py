@@ -118,7 +118,7 @@ def processChatbase(req):
   result = req.get("result")
   #message = result.get("resolvedQuery")
   metadata = result.get("metadata")
-  #fulfillment = req.get("fulfillment")
+  fulfillment = req.get("fulfillment")
   #intent = metadata.get("intentName")
   #timestamp = req.get("timestamp")
 
