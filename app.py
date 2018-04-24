@@ -125,13 +125,20 @@ def processChatbase(req):
   #timestamp = req.get("timestamp")
 
     
-  set = MessagesSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                    platform = 'Dialogflow',
-                    version = "0.1",
-                    user_id = req.get("id"))
-  msg = set.new_message(message = result.get("resolvedQuery"),intent = metadata.get("intentName"),
-                        timestamp = req.get("timestamp"))
-  resp = set.send()
+  msg = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
+              platform='Dialogflow',
+              version="0.1",
+              user_id=req.get("id"),
+              message=result.get("resolvedQuery"),
+              intent=metadata.get("intentName"))
+  resp = msg.send()
+  #set = MessagesSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                    #platform = 'Dialogflow',
+                    #version = "0.1",
+                    #user_id = req.get("id"))
+  #msg = set.new_message(message = result.get("resolvedQuery"),intent = metadata.get("intentName"),
+                        #timestamp = req.get("timestamp"))
+  #resp = set.send()
   
   #msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
                  #platform = 'Dialogflow',message = result.get("resolvedQuery"),
