@@ -122,7 +122,7 @@ def processChatbase(req):
   result = req.get("result")
   #message = result.get("resolvedQuery")
   metadata = result.get("metadata")
-  fulfillment = req.get("fulfillment")
+  #fulfillment = req.get("fulfillment")
   #intent = metadata.get("intentName")
   #timestamp = req.get("timestamp")
 
@@ -145,7 +145,7 @@ def processChatbase(req):
                  platform='Dialogflow',
                  version="0.1",
                  user_id=req.get("id"),
-                 message="deuxiememessage",
+                 message=req.get("fulfillment").get("speech"),
                  intent=metadata.get("intentName"))
   
   set.append_message(msg2)
