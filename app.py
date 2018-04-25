@@ -54,9 +54,11 @@ def webhook():
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     
+    chat = processChatbase(req)
+    
     return r
 
-chat = processChatbase(req)
+
 
 #appel des API
 def processRequest(req):
