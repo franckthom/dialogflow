@@ -124,29 +124,29 @@ def processChatbase(req):
   #timestamp = req.get("timestamp")
 
     
-  msg = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
-              platform='Dialogflow',
-              version="0.1",
-              user_id=req.get("id"),
-              message=fulfillment.get("speech"),
-              intent=metadata.get("intentName"))
-  resp = msg.send()
+  #msg = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
+              #platform='Dialogflow',
+              #version="0.1",
+              #user_id=req.get("id"),
+              #message=result.get("resolvedQuery"),
+              #intent=metadata.get("intentName"))
+  #resp = msg.send()
   
-  #set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                   #platform = 'Dialogflow',
-                   #version = "0.1",
-                   #user_id = req.get("id"))
-  #msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
+  set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                   platform = 'Dialogflow',
+                   version = "0.1",
+                   user_id = req.get("id"))
+  msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
 
-  #msg2 = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                 #platform='Dialogflow',
-                 #version="0.1",
-                 #user_id=req.get("id"),
-                 #message=fulfillment.get("speech"),
-                 #intent=metadata.get("intentName"))
+  msg2 = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                 platform='Dialogflow',
+                 version="0.1",
+                 user_id=req.get("id"),
+                 message="deuxiememessage",
+                 intent=metadata.get("intentName"))
   
-  #set.append_message(msg2)
-  #resp = set.send()
+  set.append_message(msg2)
+  resp = set.send()
   
   #msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
                  #platform = 'Dialogflow',message = result.get("resolvedQuery"),
