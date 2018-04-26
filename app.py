@@ -145,8 +145,9 @@ def processChatbase(req):
                  platform='Dialogflow',
                  version="0.1",
                  user_id=req.get("id"),
-                 message=fulfillment[0].get("speech"),
-                 intent=metadata.get("intentName"))
+                 message="C'est le bot",
+                 intent=metadata.get("intentName"),
+                 type=MessageTypes.AGENT)
   
   set.append_message(msg2)
   resp = set.send()
