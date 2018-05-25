@@ -101,6 +101,12 @@ def processRequest(req):
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
         data = client.search(sheet="Conference", date=GsSes_query) 
         res = makeWebhookResultForSheetsSes(data)
+      #sheet conference
+    elif req.get("result").get("action")=="readsheet-seshor":
+        GsSes_query = makeGsSesHorQuery(req)
+        client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
+        data = client.search(sheet="Conference", date=GsSes_query) 
+        res = makeWebhookResultForSheetsSesHor(data)
       #sheetnow  
     elif req.get("result").get("action")=="readsheet-ses-now":
         #GsSesNow_query = makeGsSesNowQuery(req)
@@ -139,7 +145,7 @@ def processChatbase(req):
                    platform = 'Dialogflow',
                    version = "0.1",
                    user_id = req.get("id"))
-  msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"),not_handled=True)
+  msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
   #if fullfilment empty return handle else return not handle
   msg2 = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
                  platform='Dialogflow',
@@ -247,7 +253,28 @@ def makeWebhookResultForSheetsSes(data):
           "source": "apiai-weather-webhook-sample"
         }
         
-
+def makeGsSesHorQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    date = parameters.get("conference")
+    if date is None:
+        return None
+    return date
+    
+def makeWebhookResultForSheetsSesHor(data):
+    value = []
+    for each in data:
+        value.append(each['Partner'])
+    nom = ', '.join(map(str, value))
+    date = data[0]['date']
+    speech = "Les partenaires exposant le " + date + " sont: " + nom
+    return {
+          "speech": speech,
+          "displayText": speech,
+           #"data": data,
+           #"contextOut": [],
+          "source": "apiai-weather-webhook-sample"
+        }
 #def makeGsSesNowQuery(req):
     #result = req.get("result")
     #parameters = result.get("parameters")
