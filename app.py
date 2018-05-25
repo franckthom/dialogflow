@@ -103,9 +103,9 @@ def processRequest(req):
         res = makeWebhookResultForSheetsSes(data)
       #sheet conference
     elif req.get("result").get("action")=="readsheet-seshor":
-        GsSes_query = makeGsSesHorQuery(req)
+        GsSesHor_query = makeGsSesHorQuery(req)
         client = SheetsuClient("https://sheetsu.com/apis/v1.0su/27ac2cb1ff16")
-        data = client.search(sheet="Conference", date=GsSes_query) 
+        data = client.search(sheet="Conference", Partner=GsSesHor_query) 
         res = makeWebhookResultForSheetsSesHor(data)
       #sheetnow  
     elif req.get("result").get("action")=="readsheet-ses-now":
@@ -262,12 +262,10 @@ def makeGsSesHorQuery(req):
     return date
     
 def makeWebhookResultForSheetsSesHor(data):
-    value = []
-    for each in data:
-        value.append(each['Partner'])
-    nom = ', '.join(map(str, value))
-    date = data[0]['date']
-    speech = "Les partenaires exposant le " + date + " sont: " + nom
+    timestart = data[0]['Start time']
+    timeend = data[0]['End time']
+    partner = data[0]['Partner']
+    speech = "La conférence de " + partner +" commence à " + timestart + " et termine à " + timeend
     return {
           "speech": speech,
           "displayText": speech,
