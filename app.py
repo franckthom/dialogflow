@@ -135,6 +135,7 @@ def processChatbase(req):
                    user_id = req.get("id"))
   if result.get("action") == "input.unknown":
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
+    resp = set.send()
   else: 
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
   
@@ -147,9 +148,8 @@ def processChatbase(req):
                    type=MessageTypes.AGENT)
   
     set.append_message(msg2)
+    resp = set.send()
   
-  resp = set.send()
-
   return None
     
   
