@@ -124,64 +124,31 @@ def processRequest(req):
     return res
   
 def processChatbase(req):
-  #api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922'
-  #platform = 'Dialogflow'
-  #version = "0.1"
-  #user_id = req.get("id")
   result = req.get("result")
-  #message = result.get("resolvedQuery")
   metadata = result.get("metadata")
   fulfillment = req.get("fulfillment")
-  #intent = metadata.get("intentName")
-  #timestamp = req.get("timestamp")
-
-    
-  #msg = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
-              #platform='Dialogflow',
-              #version="0.1",
-              #user_id=req.get("id"),
-              #message=result.get("resolvedQuery"),
-              #intent=metadata.get("intentName"))
-  #resp = msg.send()
+  
   
   set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
                    platform = 'Dialogflow',
                    version = "0.1",
                    user_id = req.get("id"))
-  msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
-  #if fullfilment empty return handle else return not handle
-  msg2 = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                 platform='Dialogflow',
-                 version="0.1",
-                 user_id=req.get("id"),
-                 message="C'est le bot",
-                 intent=metadata.get("intentName"),
-                 type=MessageTypes.AGENT)
+  if result.get("action") == "input.unknown":
+    msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
+  else: 
+    msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
   
-  set.append_message(msg2)
+    msg2 = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                   platform='Dialogflow',
+                   version="0.1",
+                   user_id=req.get("id"),
+                   message="C'est le bot",
+                   intent=metadata.get("intentName"),
+                   type=MessageTypes.AGENT)
+  
+    set.append_message(msg2)
+  
   resp = set.send()
-  
-  #msg1 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                 #platform = 'Dialogflow',message = result.get("resolvedQuery"),
-                 #intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
-                 #type=MessageTypes.USER,not_handled=True,timestamp = req.get("timestamp"))
-  
-  #msg1.set_as_feedback()
-
-  #msg2 = Message(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                 #platform = 'Dialogflow',message = fulfillment.get("speech"),
-                 #intent = metadata.get("intentName"),version = "0.1",user_id = req.get("id"),
-                 #type=MessageTypes.AGENT)
-  #message_set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                           #platform = 'Dialogflow',
-                           #version = "0.1",
-                           #user_id = req.get("id"))
- 
-  #message_set.append_message(msg1)
-  #message_set.append_message(msg2) 
-    
-  #response = message_set.send()
-   
 
   return None
     
