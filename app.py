@@ -150,6 +150,8 @@ def processChatbase(req):
     set.append_message(msg2)
     resp = set.send()
   
+  resp = set.send()
+  
   return None
     
   
