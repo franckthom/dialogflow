@@ -120,36 +120,7 @@ def processRequest(req):
 
     return res
   
-def processChatbase(req):
-  result = req.get("result")
-  metadata = result.get("metadata")
-  fulfillment = req.get("fulfillment")
-  
-  
-  set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                   platform = 'Dialogflow',
-                   version = "0.1",
-                   user_id = req.get("id"))
-  if result.get("action") == "input.unknown":
-    msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
-    resp = set.send()
-  else: 
-    msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
-  
-    msg2 = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
-                   platform='Dialogflow',
-                   version="0.1",
-                   user_id=req.get("id"),
-                   message=fulfillment.get("speech"),
-                   intent=metadata.get("intentName"),
-                   type=MessageTypes.AGENT)
-  
-    set.append_message(msg2)
-    resp = set.send()
-  
-  resp = set.send()
-  
-  return None
+
     
   
     
@@ -345,6 +316,36 @@ def makeWebhookResult(data):
         "source": "apiai-weather-webhook-sample"
     }
 
+def processChatbase(req):
+  result = req.get("result")
+  metadata = result.get("metadata")
+  fulfillment = req.get("fulfillment")
+  
+  
+  set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                   platform = 'Dialogflow',
+                   version = "0.1",
+                   user_id = req.get("id"))
+  if result.get("action") == "input.unknown":
+    msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
+    resp = set.send()
+  else: 
+    msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
+  
+    msg2 = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
+                   platform='Dialogflow',
+                   version="0.1",
+                   user_id=req.get("id"),
+                   message=fulfillment.get("speech"),
+                   intent=metadata.get("intentName"),
+                   type=MessageTypes.AGENT)
+  
+    set.append_message(msg2)
+    resp = set.send()
+  
+  resp = set.send()
+  
+  return None
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
