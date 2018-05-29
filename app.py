@@ -54,7 +54,7 @@ def webhook():
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     
-    chat = processChatbase(r)
+    chat = processChatbase(req)
     
     return r
 
@@ -121,7 +121,7 @@ def processRequest(req):
     return res
   
 
-def processChatbase(r):
+def processChatbase(req):
   result = req.get("result")
   metadata = result.get("metadata")
   fulfillment = req.get("fulfillment")
