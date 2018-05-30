@@ -121,7 +121,7 @@ def processRequest(req):
     return res
   
 
-def processChatbase(req):
+def processChatbase(req, res):
   result = req.get("result")
   metadata = result.get("metadata")
   fulfillment = req.get("fulfillment")
