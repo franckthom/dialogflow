@@ -125,8 +125,10 @@ def processChatbase(req, res):
   result = req.get("result")
   resultfull = res.get("result")
   metadata = result.get("metadata")
-  metadatafull = resultfull.get("metadata")
+  #metadatafull = resultfull.get("metadata")
   fulfillment = req.get("fulfillment")
+  #fulfillmentres = resultfull.get("fulfillment")
+  
   
   
   set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
@@ -143,8 +145,8 @@ def processChatbase(req, res):
                    platform='Dialogflow',
                    version="0.1",
                    user_id=req.get("id"),
-                   message=fulfillment.get("speech"),
-                   intent=metadatafull.get("intentName"),
+                   #message=fulfillment.get("speech"),
+                   intent=metadata.get("intentName"),
                    type=MessageTypes.AGENT)
   
     set.append_message(msg2)
