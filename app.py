@@ -124,7 +124,8 @@ def processRequest(req):
 def processChatbase(req, res):
   result = req.get("result")
   resultfull = res.get("result")
-  metadata = resultfull.get("metadata")
+  metadata = result.get("metadata")
+  metadatafull = resultfull.get("metadata")
   fulfillment = req.get("fulfillment")
   
   
@@ -143,7 +144,7 @@ def processChatbase(req, res):
                    version="0.1",
                    user_id=req.get("id"),
                    message=fulfillment.get("speech"),
-                   intent=metadata.get("intentName"),
+                   intent=metadatafull.get("intentName"),
                    type=MessageTypes.AGENT)
   
     set.append_message(msg2)
