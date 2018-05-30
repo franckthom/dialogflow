@@ -123,7 +123,8 @@ def processRequest(req):
 
 def processChatbase(req, res):
   result = req.get("result")
-  metadata = result.get("metadata")
+  resultfull = res.get("result")
+  metadata = resultfull.get("metadata")
   fulfillment = req.get("fulfillment")
   
   
@@ -141,7 +142,7 @@ def processChatbase(req, res):
                    platform='Dialogflow',
                    version="0.1",
                    user_id=req.get("id"),
-                   #message=fulfillment.get("speech"),
+                   message=fulfillment.get("speech"),
                    intent=metadata.get("intentName"),
                    type=MessageTypes.AGENT)
   
