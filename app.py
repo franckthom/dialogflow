@@ -49,7 +49,7 @@ def webhook():
     
     res = processRequest(req)
     
-    res = json.dumps(res, indent=4)
+    res = json.dumps(res, indent=4)qs
     # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
@@ -123,6 +123,7 @@ def processRequest(req):
 
 def processChatbase(req, res):
   result = req.get("result")
+  status = req.get("status")
   #resultfull = res.get("fulfillment")
   metadata = result.get("metadata")
   #metadatafull = resultfull.get("metadata")
