@@ -123,7 +123,7 @@ def processRequest(req):
 
 def processChatbase(req, res):
   result = req.get("result")
-  status = req.get("status")
+  status = result.get("status")
   #resultfull = res.get("fulfillment")
   metadata = result.get("metadata")
   #metadatafull = resultfull.get("metadata")
