@@ -129,6 +129,7 @@ def processChatbase(req, r):
   #metadatafull = resultfull.get("metadata")
   fulfillment = result.get("fulfillment")
   status = req.get("status")
+  message=r.get("speech")
   #fulfillmentres = resultfull.get("fulfillment")
   
   
