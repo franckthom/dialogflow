@@ -128,7 +128,7 @@ def processChatbase(req, r):
   #metadatafull = resultfull.get("metadata")
   fulfillment = result.get("fulfillment")
   status = req.get("status")
-  message=r.get("displayText")
+  #message=r.get("displayText")
   #fulfillmentres = resultfull.get("fulfillment")
   
   
@@ -139,7 +139,6 @@ def processChatbase(req, r):
                    user_id = req.get("id"))
   if result.get("action") == "input.unknown" or status.get("code") == 500 or status.get("code") == 503:
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
-    resp = set.send()
   else: 
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
   
@@ -152,7 +151,6 @@ def processChatbase(req, r):
                    type=MessageTypes.AGENT)
   
     set.append_message(msg2)
-    resp = set.send()
   
   resp = set.send()
   
