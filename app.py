@@ -137,7 +137,7 @@ def processChatbase(req, r):
                    platform = 'Dialogflow',
                    version = "0.1",
                    user_id = req.get("id"))
-  if result.get("action") == "input.unknown" or status.get("code") == 500 or status.get("code") == 503:
+  if result.get("action") == "input.unknown" or status.get("code") == 206 or status.get("code") == 503:
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
   else: 
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
