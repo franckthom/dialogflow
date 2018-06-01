@@ -122,14 +122,9 @@ def processRequest(req):
 #chatbase integration
 def processChatbase(req, r):
   result = req.get("result")
-  #status = result.get("status")
-  #resultfull = res.get("fulfillment")
   metadata = result.get("metadata")
-  #metadatafull = resultfull.get("metadata")
   fulfillment = result.get("fulfillment")
   status = req.get("status")
-  #message=r.get("displayText")
-  #fulfillmentres = resultfull.get("fulfillment")
   
   
   #message de base
