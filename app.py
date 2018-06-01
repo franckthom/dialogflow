@@ -147,7 +147,7 @@ def processChatbase(req, res):
                    platform='Dialogflow',
                    version="0.1",
                    user_id=req.get("id"),
-                   message=fulfillment.get("speech"),
+                   message=res.get("speech"),
                    intent=metadata.get("intentName"),
                    type=MessageTypes.AGENT)
   
