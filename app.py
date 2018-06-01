@@ -119,7 +119,7 @@ def processRequest(req):
         return {}
 
     return res
-
+#chatbase integration
 def processChatbase(req, r):
   result = req.get("result")
   #status = result.get("status")
@@ -132,13 +132,15 @@ def processChatbase(req, r):
   #fulfillmentres = resultfull.get("fulfillment")
   
   
-  
+  #message de base
   set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
                    platform = 'Dialogflow',
                    version = "0.1",
                    user_id = req.get("id"))
+  #not_handled integration
   if result.get("action") == "input.unknown" or status.get("code") == 206:
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
+  #handled  
   else: 
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"))
   
@@ -151,7 +153,7 @@ def processChatbase(req, r):
                    type=MessageTypes.AGENT)
   
     set.append_message(msg2)
-  
+  #message envoyé a chatbase
   resp = set.send()
   
   return None
