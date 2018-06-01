@@ -54,7 +54,7 @@ def webhook():
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     
-    chat = processChatbase(req, res)
+    chat = processChatbase(req, r)
     
     return r
 
@@ -121,7 +121,7 @@ def processRequest(req):
     return res
   
 
-def processChatbase(req, res):
+def processChatbase(req, r):
   result = req.get("result")
   #status = result.get("status")
   #resultfull = res.get("fulfillment")
@@ -147,7 +147,7 @@ def processChatbase(req, res):
                    platform='Dialogflow',
                    version="0.1",
                    user_id=req.get("id"),
-                   message=res.get("speech"),
+                   #message=res.get("speech"),
                    intent=metadata.get("intentName"),
                    type=MessageTypes.AGENT)
   
