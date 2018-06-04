@@ -120,7 +120,7 @@ def processRequest(req):
 
     return res
 #chatbase integration
-def processChatbase(req, r):
+def processChatbase(req, res):
   result = req.get("result")
   metadata = result.get("metadata")
   fulfillment = result.get("fulfillment")
