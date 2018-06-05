@@ -133,7 +133,7 @@ def processChatbase(req, res):
                    version = "0.1",
                    user_id = req.get("id"))
   #not_handled integration
-  if status.get("code") == "206" or result.get("action") == "input.unknown":
+  if fulfillment.get("source") != "webhook" or result.get("action") == "input.unknown":
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
   #handled  
   else: 
