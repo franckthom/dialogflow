@@ -173,7 +173,7 @@ def makeWebhookResultForSheetsExp(data):
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "webhook"
     }
 
 def makeGsBusQuery(req):
@@ -194,7 +194,7 @@ def makeWebhookResultForSheetsBus(data):
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "webhook"
     }
 
 #fonction pour prendre le parametre date pour Sheet session
@@ -219,7 +219,7 @@ def makeWebhookResultForSheetsSes(data):
           "displayText": speech,
            #"data": data,
            #"contextOut": [],
-          "source": "apiai-weather-webhook-sample"
+          "source": "webhook"
         }
         
 def makeGsSesHorQuery(req):
@@ -240,7 +240,7 @@ def makeWebhookResultForSheetsSesHor(data):
           "displayText": speech,
            #"data": data,
            #"contextOut": [],
-          "source": "apiai-weather-webhook-sample"
+          "source": "webhook"
         }
 #def makeGsSesNowQuery(req):
     #result = req.get("result")
@@ -274,7 +274,7 @@ def makeWebhookResultForSheetsSesNow(data):
          "displayText": speech,
          # "data": data,
          # "contextOut": [],
-         "source": "apiai-weather-webhook-sample"
+         "source": "webhook"
        }
 
 def makeOwmQuery(req):
@@ -292,7 +292,7 @@ def makeWebhookResultopen(data):
         "displayText": speech,
          #"data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "webhook"
     }
 
 #fonction création de la query pour API météo
@@ -342,7 +342,7 @@ def makeWebhookResult(data):
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "webhook"
     }
   
 
