@@ -131,7 +131,7 @@ def processChatbase(req, res):
   set = MessageSet(api_key = '56bd0b2b-4b67-4522-8933-1ff443a8a922',
                    platform = 'Dialogflow',
                    version = "0.1",
-                   user_id = req.get("id"))
+                   user_id = req.get("sessionId"))
   #not_handled integration
   if status.get("code") == 206 or result.get("action") == "input.unknown":
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
@@ -142,7 +142,7 @@ def processChatbase(req, res):
     msg2 = Message(api_key='56bd0b2b-4b67-4522-8933-1ff443a8a922',
                    platform='Dialogflow',
                    version="0.1",
-                   user_id=req.get("id"),
+                   user_id=req.get("sessionId"),
                    #message
                    intent=metadata.get("intentName"),
                    type=MessageTypes.AGENT)
