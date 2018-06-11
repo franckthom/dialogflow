@@ -133,7 +133,7 @@ def processChatbase(req, res):
                    version = "0.1",
                    user_id = req.get("sessionId"))
   #not_handled integration
-  if result.get("action") == "input.unknown" or fulfillment.get("speech") == "":
+  if result.get("action") == "input.unknown" or fulfillment.get("speech") != "":
     msg = set.new_message(intent = metadata.get("intentName"),message = result.get("resolvedQuery"), not_handled=True)
   #handled  
   else: 
